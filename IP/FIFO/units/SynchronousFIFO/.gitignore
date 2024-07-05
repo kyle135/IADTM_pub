@@ -1,0 +1,7 @@
+SynchronousFIFO_work/
+SynchronousFIFO_vlib.log
+SynchronousFIFO_vmap.log
+SynchronousFIFO_vlog_hdl.log
+SynchronousFIFO_vlog_hvl.log
+SynchronousFIFO_vopt.log
+modelsim.ini

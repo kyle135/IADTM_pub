@@ -1,0 +1,40 @@
+Truth Table
+\begin{array}{ccc}
+\bf{d_{in_{3}}} & \bf{d_{in_{2}}} & \bf{d_{in_{1}}} & \bf{d_{in_{0}}} & \bf{s_1} & \bf{s_0} & \bf{d_{out}} \\
+            {0} &             {0} &             {0} &             {0} &      {0} &      {0} &        {0} \\
+            {0} &             {0} &             {0} &             {0} &      {0} &      {1} &        {0} \\
+            {0} &             {0} &             {0} &             {0} &      {1} &      {0} &        {0} \\
+            {0} &             {0} &             {0} &             {0} &      {1} &      {1} &        {0} \\
+            {0} &             {1} &             {0} &             {1} &      {0} &      {0} &        {0} \\
+            {0} &             {1} &             {0} &             {1} &      {0} &      {1} &        {0} \\
+            {0} &             {1} &             {0} &             {1} &      {1} &      {0} &        {0} \\
+            {0} &             {1} &             {0} &             {1} &      {1} &      {1} &        {0} \\
+            {1} &             {0} &             {1} &             {0} &      {0} &      {0} &        {0} \\
+            {1} &             {0} &             {1} &             {0} &      {0} &      {1} &        {0} \\
+            {1} &             {0} &             {1} &             {0} &      {1} &      {0} &        {0} \\
+            {1} &             {0} &             {1} &             {0} &      {1} &      {1} &        {0} \\
+            {1} &             {1} &             {1} &             {1} &      {0} &      {0} &        {0} \\
+            {1} &             {1} &             {1} &             {1} &      {0} &      {1} &        {0} \\
+            {1} &             {1} &             {1} &             {1} &      {1} &      {0} &        {0} \\
+            {1} &             {1} &             {1} &             {1} &      {1} &      {1} &        {0} \\
+\end{array}
+
+d0
+\begin{array}{}
+                                      &            & {\overline{i_3}\bullet\overline{i_2}}  & {\overline{i_3}\bullet{i_2}} & {i_3\bullet{i_2}} & {i_3\bullet\overline{i_2}}     \\
+                                      & {\bf{d_0}} & {00}                                   & {01}                         & {11}              & {10}                           \\
+{\overline{i_1}\bullet\overline{i_0}} & {00}       & {\color{gray}{0}}                      & {\color{gray}{0}}            & {\color{gray}{0}} & {\color{green}{1}}             \\
+{\overline{i_1}\bullet{i_0}}          & {01}       & {\color{gray}{0}}                      & {\color{gray}{0}}            & {\color{gray}{0}} & {\color{gray}{0}}              \\
+{{i_1}\bullet{i_0}}                   & {11}       & {\color{gray}{0}}                      & {\color{gray}{0}}            & {\color{gray}{0}} & {\color{gray}{0}}              \\
+{{i_1}\bullet\overline{i_0}}          & {00}       & {\color{green}{1}}                     & {\color{gray}{0}}            & {\color{gray}{0}} & {\color{gray}{0}}              \\
+\end{array}
+
+d1
+\begin{array}{}
+                                      &            & {\overline{i_3}\bullet\overline{i_2}}  & {\overline{i_3}\bullet{i_2}} & {{i_3}\bullet{i_2}} & {{i_3}\bullet\overline{i_2}} \\
+                                      & {\bf{d_1}} & {00}                                   & {01}                         & {11}                & {10}                         \\
+{\overline{i_1}\bullet\overline{i_0}} & {00}       & {\color{gray}{0}}                      & {\color{green}{1}}           & {\color{gray}{0}}   & {\color{green}{1}}           \\
+{\overline{i_1}\bullet{i_0}}          & {01}       & {\color{gray}{0}}                      & {\color{gray}{0}}            & {\color{gray}{0}}   & {\color{gray}{0}}            \\
+{{i_1}\bullet{i_0}}                   & {11}       & {\color{gray}{0}}                      & {\color{gray}{0}}            & {\color{gray}{0}}   & {\color{gray}{0}}            \\
+{{i_1}\bullet\overline{i_0}}          & {00}       & {\color{grey}{0}}                      & {\color{gray}{0}}            & {\color{gray}{0}}   & {\color{gray}{0}}            \\
+\end{array}

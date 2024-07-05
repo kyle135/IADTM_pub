@@ -1,0 +1,17 @@
+obj_dir/
+compile/
+*_work/
+*.log
+log/*
+*.wsp
+*.order
+*.ini
+projlib.cfg
+*.cfg
+*.mgf
+*.lib
+*.duser
+*.set
+*.bak
+*.wlf
+transcript
