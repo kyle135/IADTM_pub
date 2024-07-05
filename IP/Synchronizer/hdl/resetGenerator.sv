@@ -54,5 +54,5 @@ module reset_generator
     end : RESET_FLOPPING
 
 
-endmodule : xcela_reset_generator
+endmodule : reset_generator
 `default_nettype wire
