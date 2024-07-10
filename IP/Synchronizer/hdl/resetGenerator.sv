@@ -1,33 +1,30 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// Design Name:  Synchronizer
+// IP Name:      Reset Generator
+// Description: This creates Acitve-High and Active-Low resets based on a given source reset.
 //
-//
-//
-// Design Name  : Reset Generator
-//
-// Authors      : Kyle D. Gilsdorf
-//
-// Description  : This creates Acitve-High and Active-Low resets based on a given source reset.
-//
-// To-Do        : Can we allow for an Active-Low reset source without resorting to `defs or repurposing the source_rst
-//                name in a bad way.
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//-----------------------------------------------------------------------------
 `default_nettype none
 module reset_generator
-(    //--------------------------------------------------
-    // Source Signals
-    //--------------------------------------------------
-    input  wire  source_rst,     // The reference reset signal we wish to target to a different clock domain,
-    //----------------------------------------------------
-    // Target Signals
-    //----------------------------------------------------
-    input  wire  target_clk,     // The target clock in which to synchronze the source reset to.
-    output reg   target_rst,     // The synchronized and flopped reset (Active-High)
-    output reg   target_rst_n    // The synchronized and flopped reset (Active-Low)
+(    //-------------------------//---------------------------------------------
+    // Source Signals           // Description(s)
+    //--------------------------//---------------------------------------------
+    input  wire  source_rst,    // The reference reset signal we wish to target to a different clock domain,
+    //--------------------------//---------------------------------------------
+    // Target Signals           // Description(s)
+    //--------------------------//---------------------------------------------
+    input  wire  target_clk,    // The target clock in which to synchronze the source reset to.
+    output reg   target_rst,    // The synchronized and flopped reset (Active-High)
+    output reg   target_rst_n   // The synchronized and flopped reset (Active-Low)
 );
 
 
     //-------------------------------------------------------------------------
-    // Wires, Reg's, and bits of my....
+    // Local Nets
 	//-------------------------------------------------------------------------
 	wire synchornized_source_rst;
 

@@ -1,9 +1,10 @@
-// Description: The Count Leading Ones (CLO) algorithm is used to determine the number of 
-// consecutive ‘1’ bits in a binary number, starting from the most significant bit (leftmost bit).
-// This operation is useful in various digital signal processing (DSP) algorithms and real-time 
-// schedulers.
-
-
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+//
+//-----------------------------------------------------------------------------
 `default_nettype none
 module FixedPointCountLeadingZeros
 #(  //----------------------------------//-------------------------------------

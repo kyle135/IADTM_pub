@@ -1,13 +1,15 @@
-//-------------------------------------------------------------------------------------------------
-// Company:         It's All Digital To Me
-// Engineer:        Kyle D. Gilsdorf
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // Module:          UVM ScoreBoard Class for ALU
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 `ifndef __ALUSCOREBOARD__SVH
     `define __ALUSCOREBOARD__SVH
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 // Scoreboard
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 `uvm_analysis_imp_decl(_monitor)
 `uvm_analysis_imp_decl(_driver)
 class  ALUScoreBoard extends uvm_scoreboard;

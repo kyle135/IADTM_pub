@@ -1,10 +1,9 @@
 //-----------------------------------------------------------------------------
-//	Instition		:	Arizona State University
-//	File 			:	compare.v
-//	Date			:	1/23/2012
-//	Description		:	Compare module to compare RD and WR pointers
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 //-----------------------------------------------------------------------------
-
 // This block is in the WR Domain. So, wptr is compared with the synchronized
 // RD pointer after gray to binary conversion. 
 module compare_wr

@@ -1,6 +1,8 @@
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
 // Company:      It's All Digital To Me
-// Engineer:     Kyle D. Gilsdorf
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // Design Name:  MIPS I 32-bit ALU
 // Module Name:  ALUMultiplyDivide
 // Description:  All of the Multiply/Divide Instructions

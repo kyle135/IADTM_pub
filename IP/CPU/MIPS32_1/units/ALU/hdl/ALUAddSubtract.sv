@@ -1,6 +1,8 @@
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
 // Company:      It's All Digital To Me
-// Engineer:     Kyle D. Gilsdorf
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // Design Name:  MIPS I 32-bit ALU
 // Module Name:  ALU
 // Description:  All of the Addition and Subtraction Operations
@@ -9,18 +11,18 @@
 // · FixedPointAdd.sv
 // · FixedPointCountLeadingZeros.sv
 // · FixedPointCountLeadingOnes.sv
-//-------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 `default_nettype none
 module ALUAddSubtract
-#(  //--------------------------------------//-----------------------------------------------------
+#(  //--------------------------------------//---------------------------------
     // Parameters                           // Description(s)
-    //--------------------------------------//-----------------------------------------------------
+    //--------------------------------------//---------------------------------
     parameter integer   N = 32,             // Data Path width in bits.
     parameter integer   R = 32,             // Register Count
     parameter integer   O = $clog2(R)       //
-)  (//--------------------------------------//-----------------------------------------------------
+)  (//--------------------------------------//---------------------------------
     // Inputs from Registered Data Sources  // Description(s)
-    //--------------------------------------//-----------------------------------------------------
+    //--------------------------------------//---------------------------------
     input  wire [N-1:0] Instruction,        //
     input  wire [N-1:0] ProgramCounter,     //
     input  wire [N-1:0] GPR_a,              // GPR a register read data.

@@ -1,10 +1,12 @@
-//-------------------------------------------------------------------------------------------------
-// Company:         It's All Digital To Me
-// Engineer:        Kyle D. Gilsdorf
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // Module Name:     ALUSequenceItem
 // Description:
 // Dependencies:   
-//------------------------------------------------------------------------------------------------- 
+//----------------------------------------------------------------------------
 `ifndef __ALUSEQUENCEITEM__SVH
    `define __ALUSEQUENCEITEM__SVH
 import MIPS32_1_hdl_pkg::*;
@@ -15,86 +17,101 @@ class  ALUSequenceItem extends uvm_sequence_item;
     // Class Parameters
     //---------------------------------------------------------------------------------------------
     parameter integer N = 32;
+
     //---------------------------------------------------------------------------------------------
     // Class Attributes
     //---------------------------------------------------------------------------------------------
-    
+    typedef union packed {                  // Register (R-Type) CPU Instruction Format
+        logic [N-1:0] Instruction;          //
+        struct packed {                     //
+            logic [5:0] OpCode;             // 6-bit primary operation code
+            logic [4:0] RegisterAddress_A;  // 5-bit specifier for the source register
+            logic [4:0] RegisterAddress_B;  // 5-bit specifier for the target (source/destination) 
+            //                              // register or used to specify functions within the 
+            //                              // primary opcode REGIMM
+            logic [4:0] RegisterAddress_C;  // 5-bit specifier for the destination register
+            logic [4:0] ShiftAmount;        // 5-bit shift amount
+            logic [5:0] FuncCode;           // 6-bit function field used to specify functions 
+            //                              // within the primary opcode SPECIAL
+        } instruction_fields;               //
+    } instruction_r_t;                      //
 
-    typedef union packed {
+    typedef union packed {                  // Immediate (I-Type) CPU Instruction Format
         logic [N-1:0] Instruction;
         struct packed {
-            logic [5:0] OpCode;
-            logic [4:0] RegisterAddress_A;
-            logic [4:0] RegisterAddress_B;
-            logic [4:0] RegisterAddress_C;
-            logic [4:0] Reserved;
-            logic [5:0] FuncCode;
-        } instruction_fields;
-    } instruction_r_t;
+            logic [ 5:0] OpCode;            // 6-bit primary operation code
+            logic [ 4:0] RegisterAddress_A; // 5-bit specifier for the source register
+            logic [ 4:0] RegisterAddress_B; // 5-bit specifier for the target (source/destination)
+            //                              // register or used to specify functions within the 
+            //                              // primary opcode REGIMM
+            logic [15:0] Immediate;         // 16-bit signed immediate used for logical operands, 
+            //                              // arithmetic signed operands, load/store address byte
+            //                              // offsets, and PC-relative branch signed instruction 
+            //                              // displacement
+        } instruction_fields;               //
+    } instruction_i_t;                      //
 
-    typedef union packed {
-        logic [N-1:0] Instruction;
-        struct packed {
-            logic [ 5:0] OpCode;
-            logic [ 4:0] RegisterAddress_A;
-            logic [ 4:0] RegisterAddress_B;
-            logic [15:0] Immediate;
-        } instruction_fields;
-    } instruction_i_t;
+    typedef union packed {                  // Jump (J-Type) CPU Instruction Format
+        logic [N-1:0] Instruction;          //
+        struct packed {                     //
+            logic [ 5:0] OpCode;            // 6-bit primary operation code
+            logic [25:0] TargetAddress;     // 26-bit index shifted left two bits to supply the low
+            //                              // -order 28 bits of the jump target address
+        } instruction_fields;               //
+    } instruction_j_t;                      //
 
-    typedef union packed {
-        instruction_r_t r_instruction;
-        instruction_i_t i_instruction;
-    } instruction_t;
+    typedef union packed {                  //
+        instruction_r_t r_instruction;      //
+        instruction_i_t i_instruction;      //
+        instruction_j_t j_instruction;      //
+    } instruction_t;                        //
 
-    rand instruction_t Instruction;          // Encoded ALU Operation Commands from ALU Decoder
-
-    rand logic [N-1:0] ProgramCounter;       //
-    rand logic [N-1:0] GPR_a;                //
-    rand logic [N-1:0] GPR_b;                //
-    rand logic [N-1:0] GPR_c;                //
-    rand logic [N-1:0] SPR_h;                //
-    rand logic [N-1:0] SPR_l;                //
-    rand logic [N-1:0] GPR_a_dat;            // Register write back data for GPR a
-    rand logic         GPR_a_val;            // Register write back data of GPR a is valid.
-    rand logic [N-1:0] GPR_b_dat;            // Register write back data for GPR b
-    rand logic         GPR_b_val;            // Register write back data of GPR b is valid.
-    rand logic [N-1:0] GPR_c_dat;            // Register write back data for GPR c
-    rand logic         GPR_c_val;            // Register write back data of GPR c is valid.
-    rand logic [N-1:0] SPR_h_dat;            //
-    rand logic         SPR_h_val;            // Special Purpose Register H
-    rand logic [N-1:0] SPR_l_dat;            //
-    rand logic         SPR_l_val;            //
-    rand logic         SPR_o_val;            // OverFlow
-    rand logic         SPR_z_val;            // Zero
+    rand instruction_t Instruction;         // Encoded ALU Operation Commands from ALU Decoder
+    rand logic [N-1:0] ProgramCounter;      //
+    rand logic [N-1:0] GPR_a;               //
+    rand logic [N-1:0] GPR_b;               //
+    rand logic [N-1:0] GPR_c;               //
+    rand logic [N-1:0] SPR_h;               //
+    rand logic [N-1:0] SPR_l;               //
+    rand logic [N-1:0] GPR_a_dat;           // Register write back data for GPR a
+    rand logic         GPR_a_val;           // Register write back data of GPR a is valid.
+    rand logic [N-1:0] GPR_b_dat;           // Register write back data for GPR b
+    rand logic         GPR_b_val;           // Register write back data of GPR b is valid.
+    rand logic [N-1:0] GPR_c_dat;           // Register write back data for GPR c
+    rand logic         GPR_c_val;           // Register write back data of GPR c is valid.
+    rand logic [N-1:0] SPR_h_dat;           //
+    rand logic         SPR_h_val;           // Special Purpose Register H
+    rand logic [N-1:0] SPR_l_dat;           //
+    rand logic         SPR_l_val;           //
+    rand logic         SPR_o_val;           // OverFlow
+    rand logic         SPR_z_val;           // Zero
     
     `uvm_object_utils_begin(ALUSequenceItem)
-        `uvm_field_int(Instruction, UVM_ALL_ON)
-        `uvm_field_int(ProgramCounter, UVM_ALL_ON)
-        `uvm_field_int(GPR_a, UVM_ALL_ON)
-        `uvm_field_int(GPR_b, UVM_ALL_ON)
-        `uvm_field_int(GPR_c, UVM_ALL_ON)
-        `uvm_field_int(SPR_h, UVM_ALL_ON)
-        `uvm_field_int(SPR_l, UVM_ALL_ON)
-        `uvm_field_int(GPR_a_dat, UVM_ALL_ON)
-        `uvm_field_int(GPR_a_val, UVM_ALL_ON)
-        `uvm_field_int(GPR_b_dat, UVM_ALL_ON)
-        `uvm_field_int(GPR_b_val, UVM_ALL_ON)
-        `uvm_field_int(GPR_c_dat, UVM_ALL_ON)
-        `uvm_field_int(GPR_c_val, UVM_ALL_ON)
-        `uvm_field_int(SPR_h_dat, UVM_ALL_ON)
-        `uvm_field_int(SPR_h_val, UVM_ALL_ON)
-        `uvm_field_int(SPR_l_dat, UVM_ALL_ON)
-        `uvm_field_int(SPR_l_val, UVM_ALL_ON)
-        `uvm_field_int(SPR_o_val, UVM_ALL_ON)
-        `uvm_field_int(SPR_z_val, UVM_ALL_ON)
+        `uvm_field_int(Instruction,     UVM_ALL_ON)
+        `uvm_field_int(ProgramCounter,  UVM_ALL_ON)
+        `uvm_field_int(GPR_a,           UVM_ALL_ON)
+        `uvm_field_int(GPR_b,           UVM_ALL_ON)
+        `uvm_field_int(GPR_c,           UVM_ALL_ON)
+        `uvm_field_int(SPR_h,           UVM_ALL_ON)
+        `uvm_field_int(SPR_l,           UVM_ALL_ON)
+        `uvm_field_int(GPR_a_dat,       UVM_ALL_ON)
+        `uvm_field_int(GPR_a_val,       UVM_ALL_ON)
+        `uvm_field_int(GPR_b_dat,       UVM_ALL_ON)
+        `uvm_field_int(GPR_b_val,       UVM_ALL_ON)
+        `uvm_field_int(GPR_c_dat,       UVM_ALL_ON)
+        `uvm_field_int(GPR_c_val,       UVM_ALL_ON)
+        `uvm_field_int(SPR_h_dat,       UVM_ALL_ON)
+        `uvm_field_int(SPR_h_val,       UVM_ALL_ON)
+        `uvm_field_int(SPR_l_dat,       UVM_ALL_ON)
+        `uvm_field_int(SPR_l_val,       UVM_ALL_ON)
+        `uvm_field_int(SPR_o_val,       UVM_ALL_ON)
+        `uvm_field_int(SPR_z_val,       UVM_ALL_ON)
     `uvm_object_utils_end
 
     //---------------------------------------------------------------------------------------------
     // Constraints
     //---------------------------------------------------------------------------------------------
     
-    // constraint b_c {b < 32;} // For Shift Operations
     //---------------------------------------------------------------------------------------------
     // Class Methods
     //---------------------------------------------------------------------------------------------
@@ -257,26 +274,24 @@ class  ALUSequenceItem extends uvm_sequence_item;
         super.do_record(recorder);
         `uvm_record_int("Instruction",    Instruction, 32, UVM_NORADIX)
         `uvm_record_int("ProgramCounter", Instruction, 32, UVM_NORADIX)
-        `uvm_record_int("GPR_a",          GPR_a,     32, UVM_NORADIX)
-        `uvm_record_int("GPR_b",          GPR_b,     32, UVM_NORADIX)
-        `uvm_record_int("GPR_c",          GPR_c,     32, UVM_NORADIX)
-        `uvm_record_int("SPR_h",          SPR_h,     32, UVM_NORADIX)
-        `uvm_record_int("SPR_l",          SPR_l,     32, UVM_NORADIX)
-        `uvm_record_int("GPR_a_dat",      GPR_a_dat, 32, UVM_NORADIX)
-        `uvm_record_int("GPR_a_val",      GPR_a_val, 1,  UVM_NORADIX)
-        `uvm_record_int("GPR_b_dat", GPR_b_dat, 32, UVM_NORADIX)
-        `uvm_record_int("GPR_b_val", GPR_b_val, 1,  UVM_NORADIX)
-        `uvm_record_int("GPR_c_dat", GPR_c_dat, 32, UVM_NORADIX)
-        `uvm_record_int("GPR_c_val", GPR_c_val, 1,  UVM_NORADIX)
-        `uvm_record_int("SPR_h_dat", SPR_h_dat, 1,  UVM_NORADIX)
-        `uvm_record_int("SPR_h_val", SPR_h_val, 1,  UVM_NORADIX)
-        `uvm_record_int("SPR_l_dat", SPR_l_dat, 32, UVM_NORADIX)
-        `uvm_record_int("SPR_l_val", SPR_l_val, 1,  UVM_NORADIX)
-        `uvm_record_int("SPR_o_val", SPR_o_val, 1,  UVM_NORADIX)
-        `uvm_record_int("SPR_z_val", SPR_o_val, 1,  UVM_NORADIX)
+        `uvm_record_int("GPR_a",          GPR_a,       32, UVM_NORADIX)
+        `uvm_record_int("GPR_b",          GPR_b,       32, UVM_NORADIX)
+        `uvm_record_int("GPR_c",          GPR_c,       32, UVM_NORADIX)
+        `uvm_record_int("SPR_h",          SPR_h,       32, UVM_NORADIX)
+        `uvm_record_int("SPR_l",          SPR_l,       32, UVM_NORADIX)
+        `uvm_record_int("GPR_a_dat",      GPR_a_dat,   32, UVM_NORADIX)
+        `uvm_record_int("GPR_a_val",      GPR_a_val,   1,  UVM_NORADIX)
+        `uvm_record_int("GPR_b_dat",      GPR_b_dat,   32, UVM_NORADIX)
+        `uvm_record_int("GPR_b_val",      GPR_b_val,   1,  UVM_NORADIX)
+        `uvm_record_int("GPR_c_dat",      GPR_c_dat,   32, UVM_NORADIX)
+        `uvm_record_int("GPR_c_val",      GPR_c_val,   1,  UVM_NORADIX)
+        `uvm_record_int("SPR_h_dat",      SPR_h_dat,   1,  UVM_NORADIX)
+        `uvm_record_int("SPR_h_val",      SPR_h_val,   1,  UVM_NORADIX)
+        `uvm_record_int("SPR_l_dat",      SPR_l_dat,   32, UVM_NORADIX)
+        `uvm_record_int("SPR_l_val",      SPR_l_val,   1,  UVM_NORADIX)
+        `uvm_record_int("SPR_o_val",      SPR_o_val,   1,  UVM_NORADIX)
+        `uvm_record_int("SPR_z_val",      SPR_o_val,   1,  UVM_NORADIX)
     endfunction : do_record
-
-
 
     // sprint() calls do_print() and returns the string.
     // print() calls do_print() and then prints with $display().
