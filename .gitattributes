@@ -1,0 +1,10 @@
+*.svh text eol=crlf
+*.sv text eol=crlf
+Makefile text eol=crlf
+*.mk test eol=crlf
+*.c text eol=crtl
+
+# Binary files
+*.pdf binary
+*.pdf binary
+*.png binary
