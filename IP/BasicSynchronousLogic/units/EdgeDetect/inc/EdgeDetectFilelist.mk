@@ -25,9 +25,13 @@ export EDGEDETECT_TOPS                   := \
 #----------------------------------------------------------------------------------------
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
-export EDGEDETECT_VERILOG_HDL_FILES     :=
-
-
+export EDGEDETECT_VERILOG_HDL_FILES     := \
+	$(EDGEDETECT_HDL_DIRECTORY)/BehavioralNegativeEdgeDetectDFF.sv \
+	$(EDGEDETECT_HDL_DIRECTORY)/BehavioralPositiveEdgeDetectDFF.sv \
+	$(EDGEDETECT_HDL_DIRECTORY)/NegativeEdgeDetect.sv \
+	$(EDGEDETECT_HDL_DIRECTORY)/PositiveEdgeDetect.sv \
+	$(EDGEDETECT_HDL_DIRECTORY)/StructuralNegativeEdgeDetectDFF.sv \
+	$(EDGEDETECT_HDL_DIRECTORY)/StructuralPositiveEditDetectDFF.sv
 
 export EDGEDETECT_VERILOG_HVL_FILES     :=
 	

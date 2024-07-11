@@ -1,3 +1,4 @@
+# Text files
 *.svh text eol=crlf
 *.sv text eol=crlf
 Makefile text eol=crlf
@@ -5,6 +6,10 @@ Makefile text eol=crlf
 *.c text eol=crtl
 
 # Binary files
-*.pdf binary
-*.pdf binary
-*.png binary
+*.pdf  binary
+*.pdf  binary
+*.png  binary
+*.doc  binary
+*.docx binary
+*.vsd  binary
+*.vsdx binary
