@@ -38,9 +38,9 @@ module GeneralPurposeRegisters
     //---------------------------------------//------------------------------------------
     // Outputs                               // Description(s)
     //---------------------------------------//------------------------------------------
-    output wire [N-1:0] GPR_a,
-    output wire [N-1:0] GPR_b,
-    output wire [N-1:0] GPR_c
+    output wire [N-1:0] GPR_a,               // First ALU operand
+    output wire [N-1:0] GPR_b,               // Second ALU Operand
+    output wire [N-1:0] GPR_c                // Data to be stored
 );   
    import MIPS32_1_hdl_pkg::*;
    

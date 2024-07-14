@@ -6,6 +6,9 @@
 // Design Name:  MIPS I 32-bit ALU
 // Module Name:  ALU
 // Description:  Top-Level ALU for MIPS 32-bit CPU (v1)
+// The ALU computes the arithmetic and logic operations and performs rotation
+// and shift operations. Moreover, it computes addresses for memory accesses of
+// the memory access unit following next in the pipeline.
 // Dependencies: 
 // · ALUAddSubtract.sv
 // · ALUAddLogical.sv

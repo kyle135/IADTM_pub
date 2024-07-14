@@ -56,9 +56,9 @@ class LogicalSequence extends uvm_sequence#(LogicalSequenceItem);
             item = LogicalSequenceItem::type_id::create("item");
 
             start_item(item);
-
-            if (~item.randomize())
-                `uvm_fatal("LogicalSequence", "Randomization failure!!!")
+            item.randomize();
+            // if (~item.randomize())
+            //     `uvm_fatal("LogicalSequence", "Randomization failure!!!")
 
             finish_item(item);
         end

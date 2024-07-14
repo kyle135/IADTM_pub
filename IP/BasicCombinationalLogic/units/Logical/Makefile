@@ -28,6 +28,7 @@ VERILOG_HDL_FILES       := $(LOGICAL_VERILOG_HDL_FILES)
 VERILOG_HVL_FILES       := $(LOGICAL_VERILOG_HVL_FILES)
 MODELING                := $(LOGICAL_MODELING)
 TOPS                    := $(LOGICAL_TOPS)
+WIDTH                   := 32
 
 display:
 	@echo "[VLIB] $(VLIB) $(VLIB_OPTS)"
@@ -38,7 +39,7 @@ display:
 #------------------------------------------------------------------------------
 # Local Clean
 #------------------------------------------------------------------------------
-clean:
+clean: display
 	@rm -rf $(WORK_DIRECTORY)/$(UNIT_NAME)_work
 	@find $(WORK_DIRECTORY)/. -name "*.log" -delete
 	@find $(WORK_DIRECTORY)/. -name "transcript" -delete
@@ -80,15 +81,15 @@ optimize_simulation_model: compile_rtl_for_simulation
 command_line_simulation: optimize_simulation_model
 	$(foreach top, $(TOPS), \
 		$(foreach model, $(MODELING), \
-			$(VSIM) \
+			$(VSIM) $(VSIM_OPTS) \
 				-work $(UNIT_NAME)_work \
 				+UVM_VERBOSITY=UVM_LOW \
-				+DUT="$(top)" \
-				+MODEL="$(model)" \
-				+N=32 \
+				-gDUT="$(top)" \
+				-gMODEL="$(model)" \
+				-gN=$(WIDTH) \
 				-c \
 				-title "$(UNIT_NAME)_$(model)$(top)" \
-				-do "quietly set StdArithNoWarnings 1; log -recursive /* -optcells; run -all;" \
+				-do "quietly set StdArithNoWarnings 1; run -all;" \
 				$(UNIT_NAME)_tb \
 				> $(UNIT_NAME)_$(model)$(top)_vsim.log; \
 		) \
@@ -98,8 +99,12 @@ command_line_simulation: optimize_simulation_model
 #------------------------------------------------------------------------------
 gui_simulation: optimize_simulation_model
 	$(VSIM) $(VSIM_OPTS) \
+		-work $(UNIT_NAME)_work \
 		+UVM_VERBOSITY=UVM_MEDIUM \
-		-title "$(UNIT_NAME)" \
+		-gDUT=LogicalGT \
+		-gMODEL=Behavioral \
+		-gN=$(WIDTH) \
+		-title "$(UNIT_NAME)_$(model)$(top)" \
 		-accessobjdebug \
 		-debugdb \
 		-classdebug \

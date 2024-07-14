@@ -8,15 +8,15 @@
 #----------------------------------------------------------------------------------------
 export LOGICAL_INC_CURRENT_MAKEFILE   := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 export LOGICAL_INC_MAKEFILE_DIRECTORY := $(dir $(LOGICAL_INC_CURRENT_MAKEFILE))
-export LOGICAL_INC_HDL_DIRECTORY	  := $(abspath $(LOGICAL_INC_MAKEFILE_DIRECTORY)/../hdl)
-export LOGICAL_INC_HVL_DIRECTORY	  := $(abspath $(LOGICAL_INC_MAKEFILE_DIRECTORY)/../hvl)
+export LOGICAL_HDL_DIRECTORY          := $(abspath $(LOGICAL_INC_MAKEFILE_DIRECTORY)/../hdl)
+export LOGICAL_HVL_DIRECTORY          := $(abspath $(LOGICAL_INC_MAKEFILE_DIRECTORY)/../hvl)
 
-export BITWISE_MODELING               := \
+export LOGICAL_MODELING               := \
     Behvioral \
     DataFlow \
     Structural
 
-export BITWISE_TOPS                   := \
+export LOGICAL_TOPS                   := \
 	LogicalAND \
 	LogicalEQ \
 	LogicalGT \

@@ -1,23 +1,29 @@
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
+//               under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// Sequence Items
+//-----------------------------------------------------------------------------
 `ifndef LOGICALSEQUENCEITEM__SVH
     `define LOGICALSEQUENCEITEM__SVH
-//---------------------------------------------------------------------------------------
-// Sequence Items
-//---------------------------------------------------------------------------------------
 class LogicalSequenceItem extends uvm_sequence_item;
+    typedef LogicalSequenceItem this_type_t;
+    
+    //-------------------------------------------------------------------------
+    // Parameter(s)
+    //-------------------------------------------------------------------------
     parameter N = 32;
+
     //-------------------------------------------------------------------------
     // Class Attributes
     //-------------------------------------------------------------------------
-    rand bit [N-1:0] a;
-    rand bit [N-1:0] b;
-    rand bit         c;
-    
-    typedef LogicalSequenceItem this_type_t;
-    `uvm_object_utils_begin (LogicalSequenceItem)
-        `uvm_field_int(a, UVM_ALL_ON);
-        `uvm_field_int(b, UVM_ALL_ON);
-        `uvm_field_int(c, UVM_ALL_ON);
-    `uvm_object_utils_end
+    rand logic [N-1:0] a;
+    rand logic [N-1:0] b;
+    rand logic         c;
+        
+    `uvm_object_utils(LogicalSequenceItem)
+
 
     //-------------------------------------------------------------------------    
     // Constraints
