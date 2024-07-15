@@ -104,8 +104,8 @@ package MIPS32_1_hdl_pkg;
     //--------------------------------------------------------------------------------*/---------------------------------//-.---.-----------------------.
     // CPU Arithmetic Instructions Op Codes                                           */ Functions                       // | T |    Assembly Code      |
     //--------------------------------------------------------------------------------*/---------------------------------//-+---+-----------------------:
-    parameter logic [5:0] ADD_OP    = '6(SPECIAL_OP); /* Add Word (overflow)                          */ parameter logic [5:0] ADD_FUNC     = 6'h20; // | R | add   c, a, b         |
-    logic [5:0] ADDI_OP   = 6'h08;      /* Add Immediate Word                           */                                 // | I | addi  c, a, immediate |
+    parameter ADD_OP    = SPECIAL_OP; /* Add Word (overflow)                          */ parameter ADD_FUNC     = 6'h20; // | R | add   c, a, b         |
+    parameter ADDI_OP   = 6'h08;      /* Add Immediate Word                           */                                 // | I | addi  c, a, immediate |
     parameter ADDIU_OP  = 6'h09;      /* Add Immediate Unsigned Word                  */                                 // | I | addiu b, a, immediate |
     parameter ADDU_OP   = SPECIAL_OP; /* Add Unsigned Word                            */ parameter ADDU_FUNC    = 6'h21; // | R | addu  c, a, b         |
     parameter CLO_OP    = SPECIAL2_OP;/* Count Leading Ones in Word                   */ parameter CLO_FUNC     = 6'h21; // | R | clo   c, a            |

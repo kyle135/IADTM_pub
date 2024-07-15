@@ -34,8 +34,8 @@ module FixedPointSubtract
     wire [N:0] a_extended;
     wire [N:0] b_extended;
     wire [N:0] b_prime;
+    
     genvar n;
-
     generate
         // B’s Complement Subtraction
         if (ALGORITHM == "BS_COMPLEMENT") begin : BS_COMPLEMENT_ALGORITHM
@@ -43,7 +43,7 @@ module FixedPointSubtract
             assign b_extended = {b[N], b};
     
             for (n =0; n <=N; n = n + 1) begin
-                assign b_prime[i] = 1 - b_extended[i];
+                assign b_prime[n] = 1 - b_extended[n];
             end
         end : BS_COMPLEMENT_ALGORITHM
     endgenerate
