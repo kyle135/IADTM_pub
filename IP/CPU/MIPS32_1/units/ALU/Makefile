@@ -38,7 +38,9 @@ display:
 # Local Clean
 #------------------------------------------------------------------------------
 clean: display
+	@rm -rf $(WORK_DIRECTORY)/slpp_all
 	@rm -rf $(WORK_DIRECTORY)/$(UNIT_NAME)_work
+	@find $(WORK_DIRECTORY)/. -name "*.vo" -delete
 	@find $(WORK_DIRECTORY)/. -name "*.log" -delete
 	@find $(WORK_DIRECTORY)/. -name "*.wlf" -delete
 	@find $(WORK_DIRECTORY)/. -name "transcript" -delete

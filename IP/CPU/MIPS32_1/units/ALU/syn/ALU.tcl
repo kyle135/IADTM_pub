@@ -97,15 +97,21 @@ read_systemverilog \
     hdl/ALULogical.sv \
     hdl/ALU.sv
 
-# # generic synthesis
-synth -top ALU
+hierarchy -top ALU
 
-# mapping to mycells.lib
-dfflibmap -liberty mycells.lib
-abc -liberty mycells.lib
 clean
+# generic synthesis
+synth -top ALU
+flatten ALU
+opt_clean ALU
+opt
+
+#
+stat
+
 
 # # write synthesized design
-write_verilog ALU.vo
+write_verilog -sv -v syn/ALU.vo
+
 
 
