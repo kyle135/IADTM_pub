@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
-// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
-//               under Creative Commons Attribution 4.0 International.
+// Licensing:    It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is
+//               licensed under Creative Commons Attribution 4.0 International.
 // Company:      It's All Digital To Me
 // Engineer:     Kyle D. Gilsdorf
 // Create Date:  11/26/2020, 1:19:27 PM 
@@ -39,9 +39,7 @@ module BehavioralBitWiseAND
     // |  1   |  0   |  0   |
     // |  1   |  1   |  1   |
     // '------'------'------'
-    always@* c = a & b;
-     
+    always @* c = a & b;
+
 endmodule : BehavioralBitWiseAND
 `default_nettype wire
-
-

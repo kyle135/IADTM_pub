@@ -117,5 +117,5 @@ gui_simulation: optimize_simulation_model
 # Synthesize
 #--------------------------------------------------------------------------------------------------
 synthesize_design: clean
-
+	yosys -c syn/ALU.tcl > ALU_syn.log
 

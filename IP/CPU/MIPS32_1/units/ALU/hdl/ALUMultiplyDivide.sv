@@ -45,11 +45,24 @@ module ALUMultiplyDivide
     output reg          SPR_z_val           // SPR Zero flag
 );
 
-    import MIPS32_1_hdl_pkg::*;
-
     //---------------------------------------------------------------------------------------------
     // Local Net Declarations.
     //---------------------------------------------------------------------------------------------
+    wire [5:0] SPECIAL_OP  = 6'b000000;
+    wire [5:0] SPECIAL2_OP = 6'b011100;
+    //---------------------------------------------------------------------------------*/--------------------------------//-.---.-----------------------.
+    // CPU Arithmetic Instructions Op Codes                                            */ Functions                      // | T |    Assembly Code      |
+    //---------------------------------------------------------------------------------*/--------------------------------//-+---+-----------------------:
+    wire [5:0] DIV_OP    = SPECIAL_OP; /* Divide (with overflow)                       */ wire [5:0] DIV_FUNC   = 6'h1A; // | R | div   a, b            |   
+    wire [5:0] DIVU_OP   = SPECIAL_OP; /* Divide Unsigned Word                         */ wire [5:0] DIVU_FUNC  = 6'h1B; // | R | divu  a, b            |
+    wire [5:0] MADD_OP   = SPECIAL2_OP;/* Multiply and Add Word to Hi, Lo              */ wire [5:0] MADD_FUNC  = 6'h00; // | R | madd  a, b            |
+    wire [5:0] MADDU_OP  = SPECIAL2_OP;/* Multiply and Add Unsigned Word to Hi, Lo     */ wire [5:0] MADDU_FUNC = 6'h01; // | R | maddu a, b            |
+    wire [5:0] MSUB_OP   = SPECIAL2_OP;/* Multiply and Subtract Word to Hi, Lo         */ wire [5:0] MSUB_FUNC  = 6'h04; // | R | msub  a, b            |
+    wire [5:0] MSUBU_OP  = SPECIAL2_OP;/* Multiply and Subtract Unsigned Word to Hi, Lo*/ wire [5:0] MSUBU_FUNC = 6'h05; // | R | msubu a, b            |
+    wire [5:0] MUL_OP    = SPECIAL2_OP;/* Multiply Word to GPR                         */ wire [5:0] MUL_FUNC   = 6'h02; // | R | mul   c, a, b         |
+    wire [5:0] MULT_OP   = SPECIAL_OP; /* Multiply Word                                */ wire [5:0] MULT_FUNC  = 6'h18; // | R | mult  a, b            |
+    wire [5:0] MULTU_OP  = SPECIAL_OP; /* Multiply Unsigned Word                       */ wire [5:0] MULTU_FUNC = 6'h19; // | R | multu a, b            |
+    //
     reg  [  N-1:0] DIV_a, DIV_b;
     wire [2*N-1:0] DIV_c;
     reg  [  N-1:0] MUL_a, MUL_b;

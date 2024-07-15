@@ -47,11 +47,20 @@ module ALUAddSubtract
     output reg          SPR_z_val           // Zero Flag
 );
 
-    import MIPS32_1_hdl_pkg::*;
 
     //-----------------------------------------------------------------------------------
     // Local Net Declarations.
     //-----------------------------------------------------------------------------------
+    logic [5:0] ADD_OP    = 6'h00; /* Add Word (overflow)         */ logic [5:0] ADD_FUNC     = 6'h20; // | R | add   c, a, b         |
+    logic [5:0] ADDI_OP   = 6'h08; /* Add Immediate Word          */                                   // | I | addi  c, a, immediate |
+    logic [5:0] ADDIU_OP  = 6'h09; /* Add Immediate Unsigned Word */                                   // | I | addiu b, a, immediate |
+    logic [5:0] ADDU_OP   = 6'h00; /* Add Unsigned Word           */ logic [5:0] ADDU_FUNC    = 6'h21; // | R | addu  c, a, b         |
+    logic [5:0] CLO_OP    = 6'h1C; /* Count Leading Ones in Word  */ logic [5:0] CLO_FUNC     = 6'h21; // | R | clo   c, a            |
+    logic [5:0] CLZ_OP    = 6'h1C; /* Count Leading Zeros in Word */ logic [5:0] CLZ_FUNC     = 6'h20; // | R | clz   c, a            |
+    logic [5:0] SUB_OP    = 6'h00; /* Subtract (with overflow)    */ logic [5:0] SUB_FUNC     = 6'h22; // | R | sub                   | 
+    logic [5:0] SUBU_OP   = 6'h00; /* Subtract Unsigned Word      */ logic [5:0] SUBU_FUNC    = 6'h23; // | R | subu                  | 
+
+
     wire [ 15:0] Imm16;
     reg  [N-1:0] ADD_a, ADD_b; 
     wire [N-1:0] ADD_c;

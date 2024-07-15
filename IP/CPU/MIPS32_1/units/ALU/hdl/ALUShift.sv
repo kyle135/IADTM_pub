@@ -44,17 +44,24 @@ module ALUShift
     output  reg         SPR_o_val,      // SPR OverFlow flag 
     output  reg         SPR_z_val       // SPR Zero flag
 );
-    
-    import MIPS32_1_hdl_pkg::*;
 
     //---------------------------------------------------------------------------------------------
     // Local Net Declarations.
     //---------------------------------------------------------------------------------------------
-    wire [ 15:0] Imm16;
-    reg  [ 31:0] SR_a, SR_b; 
-    wire [ 31:0] SR_c;
-    reg  [ 31:0] SL_a, SL_b;
-    wire [ 31:0] SL_c;
+    //-----------------------------------------------------------------------------*/------------------------//-+---+-----------------------:
+    // CPU Shift Instruction Op Codes                                              */ Functions              // | T |    Assembly Code      |
+    //-----------------------------------------------------------------------------*/------------------------//-+---+-----------------------:
+    wire [ 5:0] SLL_OP  = 6'h00; /* Shift Word Left Logical              */ wire [5:0] SLL_FUNC     = 6'h00; // | R | 
+    wire [ 5:0] SLLV_OP = 6'h00; /* Shift Word Left Logical Variable     */ wire [5:0] SLLV_FUNC    = 6'h04; // |   |
+    wire [ 5:0] SRA_OP  = 6'h00; /* Shift Word Right Arithmetic          */ wire [5:0] SRA_FUNC     = 6'h03; // |   |
+    wire [ 5:0] SRAV_OP = 6'h00; /* Shift Word Right Arithmetic Variable */ wire [5:0] SRAV_FUNC    = 6'h07; // |   |
+    wire [ 5:0] SRL_OP  = 6'h00; /* Shift Word Right Logical             */ wire [5:0] SRL_FUNC     = 6'h02; // | R | srl
+    wire [ 5:0] SRLV_OP = 6'h00; /* Shift Word Right Logical Variable    */ wire [5:0] SRLV_FUNC    = 6'h06; // |   |
+    wire [15:0] Imm16;
+    reg  [31:0] SR_a, SR_b; 
+    wire [31:0] SR_c;
+    reg  [31:0] SL_a, SL_b;
+    wire [31:0] SL_c;
 
     //---------------------------------------------------------------------------------------------
     // Combinational Logic

@@ -38,7 +38,7 @@ module FixedPointSubtract
 
     generate
         // B’s Complement Subtraction
-        if (ALGORITHN == "BS_COMPLEMENT") begin : BS_COMPLEMENT_ALGORITHM
+        if (ALGORITHM == "BS_COMPLEMENT") begin : BS_COMPLEMENT_ALGORITHM
             assign a_extended = {a[N], a};
             assign b_extended = {b[N], b};
     

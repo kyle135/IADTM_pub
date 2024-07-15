@@ -48,12 +48,24 @@ module ALULogical
     output reg          SPR_o_val,      // Overflow
     output reg          SPR_z_val       // Zero
 );
-    
-    import MIPS32_1_hdl_pkg::*;
 
     //-------------------------------------------------------------------------
     // Local Net Declarations.
-    //-------------------------------------------------------------------------
+        //-------------------------------------------------------------------------
+    wire [5:0] SPECIAL_OP  = 6'b000000;
+    wire [5:0] SPECIAL2_OP = 6'b011100;
+    //---------------------------------------------------------*/------------------------------//-+---+-----------------------:
+    // CPU Logical Instruction Op Codes                        */ Functions                    // | T |    Assembly Code      |
+    //---------------------------------------------------------*/------------------------------//-+---+-----------------------:
+    wire [5:0] AND_OP  = SPECIAL_OP; /* AND                    */ wire [5:0] AND_FUNC = 6'h24; // | R | and
+    wire [5:0] ANDI_OP = 6'h0C;      /* AND Immediate          */                              // | I | andi
+    wire [5:0] LUI_OP  = 6'h0F;      /* Load Upper Immediate   */                              // | I | lui
+    wire [5:0] NOR_OP  = 6'h00;      /* Not OR                 */ wire [5:0] NOR_FUNC = 6'h27; // | R | nor
+    wire [5:0] OR_OP   = 6'h00;      /* OR                     */ wire [5:0] OR_FUNC  = 6'h25; // | R | or
+    wire [5:0] ORI_OP  = 6'h0D;      /* OR immediate           */ wire [5:0] ORI_FUNC = 6'h00; // | I | ori
+    wire [5:0] XOR_OP  = 6'h00;      /* Exclusive OR           */ wire [5:0] XOR_FUNC = 6'h26; // |   |
+    wire [5:0] XORI_OP = 6'h0E;      /* Exclusive OR immediate */                              // |   |
+
     wire [ 15:0] Imm16;
     reg  [N-1:0] AND_a, AND_b;
     wire [N-1:0] AND_c;
@@ -256,7 +268,7 @@ module ALULogical
                 {SPR_l_val, SPR_l_dat} = {1'b0, SPR_l};
                 {SPR_o_val, SPR_z_val} = {1'b0,  1'b0};
             end : XOR_INSTRUCTION
-            {XORI_OP,   5'b?????, 5'b?????, 5'b?????, 5'b00000, XORI_FUNC}: begin : XOR_IMMEDIATE_INSTRUCTION
+            {XORI_OP,   5'b?????, 5'b?????, 16'd0}: begin : XOR_IMMEDIATE_INSTRUCTION
                 //---------------------------------------------------------------------------------
                 //    31         26 25       21 20       16 15                            0
                 //   .-------------.-----------.-----------.---------------------------------.

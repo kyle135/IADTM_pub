@@ -17,3 +17,5 @@ transcript
 ALUCModel.o
 ALUCModel.so
 *.vstf
+slpp_all
+file*.lst
