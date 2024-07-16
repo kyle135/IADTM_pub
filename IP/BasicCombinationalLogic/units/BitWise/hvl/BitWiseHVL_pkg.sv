@@ -10,7 +10,7 @@
 // Module Name:  SystemVerilog package for testing bitwise designs.
 // Dependencies:
 //-----------------------------------------------------------------------------
-package BitWiseHDL_pkg;
+package BitWiseHVL_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
@@ -24,4 +24,4 @@ package BitWiseHDL_pkg;
 	`include "hvl/ScoreBoard/src/BitWiseScoreboard.svh"
     `include "hvl/Environment/src/BitWiseEnvironment.svh"
 	`include "hvl/Test/src/BitWiseTest.svh"
-endpackage : BitWiseHDL_pkg
+endpackage : BitWiseHVL_pkg

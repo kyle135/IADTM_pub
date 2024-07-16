@@ -8,8 +8,8 @@
 #----------------------------------------------------------------------------------------
 export BITWISE_INC_CURRENT_MAKEFILE	  := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 export BITWISE_INC_MAKEFILE_DIRECTORY := $(dir $(BITWISE_INC_CURRENT_MAKEFILE))
-export BITWISE_INC_HDL_DIRECTORY      := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hdl)
-export BITWISE_INC_HVL_DIRECTORY      := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hvl)
+export BITWISE_HDL_DIRECTORY      := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hdl)
+export BITWISE_HVL_DIRECTORY      := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hvl)
 
 export BITWISE_MODELING               := \
     Behavioral \
@@ -31,48 +31,48 @@ export BITWISE_TOPS                   := \
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
 export BITWISE_VERILOG_HDL_FILES := \
-	hdl/BehavioralBitWiseAND.sv \
-	hdl/BehavioralBitWiseNAND.sv \
-	hdl/BehavioralBitWiseNOR.sv \
-	hdl/BehavioralBitWiseNOT.sv \
-	hdl/BehavioralBitWiseOR.sv \
-	hdl/BehavioralBitWiseShiftLeft.sv \
-	hdl/BehavioralBitWiseShiftRight.sv \
-	hdl/BehavioralBitWiseXNOR.sv \
-	hdl/BehavioralBitWiseXOR.sv \
-	hdl/BitWiseAND.sv \
-	hdl/BitWiseShiftMux.sv \
-	hdl/BitWiseNAND.sv \
-	hdl/BitWiseNOR.sv \
-	hdl/BitWiseNOT.sv \
-	hdl/BitWiseOR.sv \
-	hdl/BitWiseShiftLeft.sv \
-	hdl/BitWiseShiftRight.sv \
-	hdl/BitWiseXNOR.sv \
-	hdl/BitWiseXOR.sv \
-	hdl/DataFlowBitWiseAND.sv \
-	hdl/DataFlowBitWiseNAND.sv \
-	hdl/DataFlowBitWiseNOR.sv \
-	hdl/DataFlowBitWiseNOT.sv \
-	hdl/DataFlowBitWiseOR.sv \
-	hdl/DataFlowBitWiseShiftLeft.sv \
-	hdl/DataFlowBitWiseShifRight.sv \
-	hdl/DataFlowBitWiseXNOR.sv \
-	hdl/DataFlowBitWiseXOR.sv \
-	hdl/StructuralBitWiseAND.sv \
-	hdl/StructuralBitWiseNAND.sv \
-	hdl/StructuralBitWiseNOR.sv \
-	hdl/StructuralBitWiseNOT.sv \
-	hdl/StructuralBitWiseOR.sv \
-	hdl/StructuralBitWiseShiftLeft.sv \
-	hdl/StructuralBitWiseShiftRight.sv \
-	hdl/StructuralBitWiseXNOR.sv \
-	hdl/StructuralBitWiseXOR.sv
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseNAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseNOT.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseShiftLeft.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseShiftRight.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseXNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BehavioralBitWiseXOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseShiftMux.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseNAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseNOT.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseShiftLeft.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseShiftRight.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseXNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/BitWiseXOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseNAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseNOT.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseShiftLeft.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseShifRight.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseXNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/DataFlowBitWiseXOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseNAND.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseNOT.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseShiftLeft.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseShiftRight.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseXNOR.sv \
+	$(BITWISE_HDL_DIRECTORY)/StructuralBitWiseXOR.sv
 #----------------------------------------------------------------------------------------
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
 export BITWISE_VERILOG_HVL_FILES := \
-	hvl/Interface/src/BitWiseInterface.sv \
-	hvl/BitWiseHDL_pkg.sv \
-	hvl/BitWise_tb.sv
+	$(BITWISE_HVL_DIRECTORY)/Interface/src/BitWiseInterface.sv \
+	$(BITWISE_HVL_DIRECTORY)/BitWiseHVL_pkg.sv \
+	$(BITWISE_HVL_DIRECTORY)/BitWise_tb.sv
 

@@ -39,8 +39,8 @@ module FixedPointSubtract
     generate
         // B’s Complement Subtraction
         if (ALGORITHM == "BS_COMPLEMENT") begin : BS_COMPLEMENT_ALGORITHM
-            assign a_extended = {a[N], a};
-            assign b_extended = {b[N], b};
+            assign a_extended = {a[N-1], a};
+            assign b_extended = {b[N-1], b};
     
             for (n =0; n <=N; n = n + 1) begin
                 assign b_prime[n] = 1 - b_extended[n];

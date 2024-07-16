@@ -22,7 +22,7 @@ module BitWise_tb
     parameter integer O     = $clog2(N)
 );
     import uvm_pkg::*;
-    import BitWiseHDL_pkg::*;
+    import BitWiseHVL_pkg::*;
 
     //-------------------------------------------------------------------------
     // Local TestBench Signals

@@ -46,7 +46,7 @@ module StructuralBitWiseShiftRight
             // o = 1                                         a_sel[1], b[1],                00, a_sel[0  ][31 2]
             // o = 2                                         a_sel[2], b[2],              0000, a_sel[1  ][31:4]
             // o = 3                                         a_sel[3], b[3],         000000000, a_sel[2  ][31:8]
-            else                 BitWiseShiftMUX #(N) u_mux (a_sel[o], b[o], 32'({{(2**o){1'b0}},   a_sel[o-1][N-1:(2**0)]}), 32'(a_sel[o-1]));
+            else                 BitWiseShiftMUX #(N) u_mux (a_sel[o], b[o], 32'({{(2**o){1'b0}},   a_sel[o-1][N-1:(2**o)]}), 32'(a_sel[o-1]));
         end : SHIFT_BLOCK
     endgenerate
 
