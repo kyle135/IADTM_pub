@@ -31,46 +31,46 @@ export LOGICAL_TOPS                   := \
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
 export LOGICAL_VERILOG_HDL_FILES      := \
-    hdl/BehavioralLogicalAND.sv \
-    hdl/BehavioralLogicalEQ.sv \
-    hdl/BehavioralLogicalGT.sv \
-    hdl/BehavioralLogicalGTEQ.sv \
-    hdl/BehavioralLogicalLT.sv \
-    hdl/BehavioralLogicalLTEQ.sv \
-    hdl/BehavioralLogicalNEQ.sv \
-    hdl/BehavioralLogicalNOT.sv \
-    hdl/BehavioralLogicalOR.sv \
-    hdl/DataFlowLogicalAND.sv \
-    hdl/DataFlowLogicalEQ.sv \
-    hdl/DataFlowLogicalGT.sv \
-    hdl/DataFlowLogicalGTEQ.sv \
-    hdl/DataFlowLogicalLT.sv \
-    hdl/DataFlowLogicalLTEQ.sv \
-    hdl/DataFlowLogicalNEQ.sv \
-    hdl/DataFlowLogicalNOT.sv \
-    hdl/DataFlowLogicalOR.sv \
-    hdl/LogicalAND.sv \
-    hdl/LogicalEQ.sv \
-    hdl/LogicalGT.sv \
-    hdl/LogicalGTEQ.sv \
-    hdl/LogicalLT.sv \
-    hdl/LogicalLTEQ.sv \
-    hdl/LogicalNEQ.sv \
-    hdl/LogicalNOT.sv \
-    hdl/LogicalOR.sv \
-    hdl/StructuralLogicalAND.sv \
-    hdl/StructuralLogicalEQ.sv \
-    hdl/StructuralLogicalGT.sv \
-    hdl/StructuralLogicalGTEQ.sv \
-    hdl/StructuralLogicalLT.sv \
-    hdl/StructuralLogicalLTEQ.sv \
-    hdl/StructuralLogicalNEQ.sv \
-    hdl/StructuralLogicalNOT.sv \
-    hdl/StructuralLogicalOR.sv
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalAND.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalGT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalGTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalLT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalLTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalNEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalNOT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/BehavioralLogicalOR.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalAND.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalGT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalGTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalLT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalLTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalNEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalNOT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/DataFlowLogicalOR.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalAND.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalGT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalGTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalLT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalLTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalNEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalNOT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/LogicalOR.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalAND.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalGT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalGTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalLT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalLTEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalNEQ.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalNOT.sv \
+    $(LOGICAL_HDL_DIRECTORY)/StructuralLogicalOR.sv
 #----------------------------------------------------------------------------------------
 # Specify Verilog Simulation Files
 #----------------------------------------------------------------------------------------
 export LOGICAL_VERILOG_HVL_FILES      := \
-	hvl/Interface/src/LogicalInterface.sv \
-	hvl/LogicalHDL_pkg.sv \
-	hvl/Logical_tb.sv
+	$(LOGICAL_HVL_DIRECTORY)/Interface/src/LogicalInterface.sv \
+	$(LOGICAL_HVL_DIRECTORY)/LogicalHVL_pkg.sv \
+	$(LOGICAL_HVL_DIRECTORY)/Logical_tb.sv

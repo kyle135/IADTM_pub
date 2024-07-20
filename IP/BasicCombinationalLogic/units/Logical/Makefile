@@ -101,8 +101,8 @@ gui_simulation: optimize_simulation_model
 	$(VSIM) $(VSIM_OPTS) \
 		-work $(UNIT_NAME)_work \
 		+UVM_VERBOSITY=UVM_MEDIUM \
-		-gDUT=LogicalGT \
-		-gMODEL=Behavioral \
+		-gDUT=LogicalLT \
+		-gMODEL=Structural \
 		-gN=$(WIDTH) \
 		-title "$(UNIT_NAME)_$(model)$(top)" \
 		-accessobjdebug \

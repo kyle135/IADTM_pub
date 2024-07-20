@@ -1,11 +1,12 @@
-//---------------------------------------------------------------------------------------
-// Company: It's All Digital To Me
-// Engineer: Kyle D. Gilsdorf
-// Create Date: 09/21/2013
-// Design Name: Structural Logical AND (by n-bits)
-// Unit Name: Logical
-// Module Name: StructuralLogicalAND
-// Project Name: Basic Logic
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is 
+//               licensed under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// IP Name:      BasicCombinationalLogic
+// Unit Name:    Logical
+// Design Name:  Structural Logical AND (by n-bits)
+// Module Name:  StructuralLogicalAND
 // Dependencies: None
 //---------------------------------------------------------------------------------------
 `default_nettype none
@@ -43,7 +44,7 @@ module StructuralLogicalAND
             or or_a ( A[i], a[i], A[i-1] );
             or or_b ( B[i], b[i], B[i-1] );
         end : GENERATE_LOOP
-        and a_and_b(c, A[N-1], B[N-1:0]);
+        and a_and_b(c, A[N-1], B[N-1]);
     endgenerate
 
 endmodule : StructuralLogicalAND

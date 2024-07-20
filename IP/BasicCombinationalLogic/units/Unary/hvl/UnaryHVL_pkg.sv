@@ -1,7 +1,7 @@
 
 
 
-package UnaryHDL_pkg;
+package UnaryHVL_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
@@ -14,8 +14,8 @@ package UnaryHDL_pkg;
 	`include "hvl/Monitor/src/UnaryMonitor.svh"
 	`include "hvl/Driver/src/UnaryDriver.svh"
 	`include "hvl/Agent/src/UnaryAgent.svh"
-	`include "hvl/ScoreBoard/src/UnaryScoreboard.svh"
+	`include "hvl/ScoreBoard/src/UnaryScoreBoard.svh"
     `include "hvl/Environment/src/UnaryEnvironment.svh"
 	`include "hvl/Test/src/UnaryTest.svh"
 
-endpackage
+endpackage : UnaryHVL_pkg

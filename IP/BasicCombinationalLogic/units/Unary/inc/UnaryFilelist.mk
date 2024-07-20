@@ -8,8 +8,8 @@
 #----------------------------------------------------------------------------------------
 export UNARY_INC_CURRENT_MAKEFILE   := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 export UNARY_INC_MAKEFILE_DIRECTORY := $(dir $(UNARY_INC_CURRENT_MAKEFILE))
-export UNARY_INC_HDL_DIRECTORY      := $(abspath $(UNARY_INC_MAKEFILE_DIRECTORY)/../hdl)
-export UNARY_INC_HVL_DIRECTORY      := $(abspath $(UNARY_INC_MAKEFILE_DIRECTORY)/../hvl)
+export UNARY_HDL_DIRECTORY          := $(abspath $(UNARY_INC_MAKEFILE_DIRECTORY)/../hdl)
+export UNARY_HVL_DIRECTORY          := $(abspath $(UNARY_INC_MAKEFILE_DIRECTORY)/../hvl)
 
 export UNARY_MODELING               := \
     DataFlow \
@@ -30,39 +30,39 @@ export UNARY_TOPS                   := \
 #----------------------------------------------------------------------------------------
 # • &  ~&  |  ~|  ^  ~^  ^~
 export UNARY_VERILOG_HDL_FILES      := \
-    hdl/BehavioralUnaryAND.sv \
-    hdl/BehavioralUnaryNAND.sv \
-    hdl/BehavioralUnaryNOR.sv \
-    hdl/BehavioralUnaryNXOR.sv \
-    hdl/BehavioralUnaryOR.sv \
-    hdl/BehavioralUnaryXNOR.sv \
-    hdl/BehavioralUnaryXOR.sv \
-    hdl/DataFlowUnaryAND.sv \
-    hdl/DataFlowUnaryNAND.sv \
-    hdl/DataFlowUnaryNOR.sv \
-    hdl/DataFlowUnaryNXOR.sv \
-    hdl/DataFlowUnaryOR.sv \
-    hdl/DataFlowUnaryXNOR.sv \
-    hdl/DataFlowUnaryXOR.sv \
-    hdl/StructuralUnaryAND.sv \
-    hdl/StructuralUnaryNAND.sv \
-    hdl/StructuralUnaryNOR.sv \
-    hdl/StructuralUnaryNXOR.sv \
-    hdl/StructuralUnaryOR.sv \
-    hdl/StructuralUnaryXNOR.sv \
-    hdl/StructuralUnaryXOR.sv \
-    hdl/UnaryAND.sv \
-    hdl/UnaryNAND.sv \
-    hdl/UnaryNOR.sv \
-    hdl/UnaryNXOR.sv \
-    hdl/UnaryOR.sv \
-    hdl/UnaryXNOR.sv \
-    hdl/UnaryXOR.sv
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryAND.sv \
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryNAND.sv \
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryNXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryOR.sv \
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryXNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/BehavioralUnaryXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryAND.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryNAND.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryNXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryOR.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryXNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/DataFlowUnaryXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryAND.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryNAND.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryNXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryOR.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryXNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/StructuralUnaryXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryAND.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryNAND.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryNXOR.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryOR.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryXNOR.sv \
+    $(UNARY_HDL_DIRECTORY)/UnaryXOR.sv
 
 #----------------------------------------------------------------------------------------
 # Specify Verilog Simulation Files
 #----------------------------------------------------------------------------------------
 export UNARY_VERILOG_HVL_FILES      := \
-	hvl/Interface/src/UnaryInterface.sv \
-	hvl/UnaryHDL_pkg.sv \
-	hvl/Unary_tb.sv
+	$(UNARY_HVL_DIRECTORY)/Interface/src/UnaryInterface.sv \
+	$(UNARY_HVL_DIRECTORY)/UnaryHVL_pkg.sv \
+	$(UNARY_HVL_DIRECTORY)/Unary_tb.sv
