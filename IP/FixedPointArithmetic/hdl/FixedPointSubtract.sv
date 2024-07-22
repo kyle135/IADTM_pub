@@ -15,7 +15,7 @@ module FixedPointSubtract
     // Parameter(s)                                // Description(s)
     //---------------------------------------------//------------------------------------
     parameter integer N         = 32,              // Data path width in bits.
-    parameter string  ALGORITHM = "BS_COMPLEMENT"  //
+    parameter string  ALGORITHM = "RippleCarrySubtraction"  //
 )  (//---------------------------------------------//------------------------------------
     // Inputs                                      // Description(s)
     //---------------------------------------------//------------------------------------
@@ -37,33 +37,25 @@ module FixedPointSubtract
     
     genvar n;
     generate
-        // B’s Complement Subtraction
-        if (ALGORITHM == "BS_COMPLEMENT") begin : BS_COMPLEMENT_ALGORITHM
-            assign a_extended = {a[N-1], a};
-            assign b_extended = {b[N-1], b};
-    
-            for (n =0; n <=N; n = n + 1) begin
-                assign b_prime[n] = 1 - b_extended[n];
-            end
-        end : BS_COMPLEMENT_ALGORITHM
+        if (ALGORITHM == "RippleCarrySubtraction") begin : RIPPLECARRYSUBTRACTION_INSTANCE
+            RippleCarrySubtraction
+            #(  //-------------------------//------------------------------------------
+                // Paremeter(s)            // Description(s)
+                //-------------------------//------------------------------------------
+                .N          ( N         )  //
+            )                              //
+            u_RippleCarrySubtraction       //
+            (   //-------------------------//------------------------------------------
+                //                         // Direction, Size & Descriptions
+                //-------------------------//------------------------------------------
+                .a          ( a         ), // [I][N] Operand A
+                .b          ( b         ), // [I][N] Operand B
+                .carry_in   ( carry_in  ), // [I][1] Carry In
+                .c          ( c         ), // [O][N] Result
+                .carry_out  ( carry_out )  // [O][1] Carry out
+            );
+        end : RIPPLECARRYSUBTRACTION_INSTANCE
     endgenerate
-
-    FixedPointAdd
-    #(  //--------------------------//-----------------------------------------
-        // Paremeter(s)             // Description(s)
-        //--------------------------//-----------------------------------------
-        .N          ( N+1        )  //
-    )                               //
-    u_FixedPointAdd                 //
-    (   //--------------------------//-----------------------------------------
-        //                          // Direction, Size & Descriptions
-        //--------------------------//-----------------------------------------
-        .a          ( a_extended ), // [I][N+1]
-        .b          ( b_extended ), // [I][N+1]
-        .carry_in   ( b_prime    ), // [I][  1]
-        .c          ( c          ), // [O][N+1]
-        .carry_out  ( carry_out  )  // [O][  1]
-    );
 
 endmodule : FixedPointSubtract
 `default_nettype wire

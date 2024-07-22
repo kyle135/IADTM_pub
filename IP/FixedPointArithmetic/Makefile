@@ -20,6 +20,7 @@ VERILOG_HDL_FILES       := $(FIXEDPOINTARITHMETIC_VERILOG_HDL_FILES)
 VERILOG_HVL_FILES       := $(FIXEDPOINTARITHMETIC_VERILOG_HVL_FILES)
 MODELS                  := $(FIXEDPOINTARITHMETIC_MODELS)
 TOPS                    := $(FIXEDPOINTARITHMETIC_TOPS)
+TOP                     := FixedPointSubtract
 WIDTH                   := 32
 ALGORITHMS              := $(FIXEDPOINTARITHMETIC_ALGORITHMS)
 
@@ -30,6 +31,7 @@ display:
 	@echo "[VSIM]           $(VSIM) $(VSIM_OPTS)"
 	@echo "[IP_DIRECTORY]	$(IP_DIRECTORY)"
 	@echo "[IP_NAME]        $(IP_NAME)"
+	@echo "[TOPS]           $(TOPS)"
 	@echo "[UNIT_NAME]      $(UNIT_NAME)"
 	@echo "[WORK_DIRECTORY] $(WORK_DIRECTORY)"
 
@@ -75,16 +77,18 @@ compile_rtl_for_simulation: compile_c_model_for_simulation
 # Optimize Design (for simulation speed-up)
 #------------------------------------------------------------------------------
 optimize_simulation_model: compile_rtl_for_simulation
-	$(VOPT) \
-		$(IP_NAME)_tb \
-		-o opt_$(IP_NAME)_tb > $(IP_NAME)_vopt.log
+	$(foreach top, $(TOPS), \
+		$(VOPT) \
+			$(top)_tb \
+			-o opt_$(top)_tb > $(top)_vopt.log; \
+	)
 #------------------------------------------------------------------------------
 # Simulate Design (Command Line)
 #------------------------------------------------------------------------------
 command_line_simulation: optimize_simulation_model
 	$(foreach top, $(TOPS), \
 		$(VSIM) \
-			-work $(IP_NAME)_$(top)_work \
+			-work $(IP_NAME)_work \
 			-gN=$(WIDTH) \
 			-c \
 			-title "$(IP_NAME)_$(top)" \
@@ -100,16 +104,12 @@ command_line_simulation: optimize_simulation_model
 gui_simulation: optimize_simulation_model
 	$(VSIM) \
 		-work $(IP_NAME)_work \
-		+UVM_TESTNAME=ALUTest \
-		+UVM_VERBOSITY=UVM_MEDIUM \
 		-gN=$(WIDTH) \
-		-gR=32 \
-		-title "$(IP_NAME)" \
+		-title "$(IP_NAME) - $(TOP)" \
 		-do "log -r /*; run -all;" \
 		-voptargs=+acc \
 		-t ns \
-		-sv_lib ALUCModel \
-		$(IP_NAME)_tb \
+		$(TOP)_tb \
 		> $(IP_NAME)_vsim.log;
 #--------------------------------------------------------------------------------------------------
 # Synthesize

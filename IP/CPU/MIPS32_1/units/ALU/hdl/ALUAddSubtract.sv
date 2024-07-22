@@ -72,6 +72,7 @@ module ALUAddSubtract
     wire [N-1:0] SUB_c;
     wire         ADD_carry_out; 
     wire         SUB_carry_out;
+    
 
     //------------------------------------------------------------------------------------
     // Combinational Logic
@@ -381,7 +382,7 @@ module ALUAddSubtract
         //                                     // Direction, Size & Description(s)
         //-------------------------------------//--------------------------------------------------
         .c          ( SUB_c                 ), // [O][N] Subtract Result c.
-        .carry_out  ( SUB_carry_out         )  // [O][1] Subtract Overflow
+        .carry_out  ( SUB_carry_out         )  // [O][1] Subtract Carry
     );
 
     FixedPointCountLeadingZeros
