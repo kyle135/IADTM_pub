@@ -1,11 +1,11 @@
 //-----------------------------------------------------------------------------
-// Company: It's All Digital To Me
-// Engineer: Kyle D. Gilsdorf
-// Create Date: 09/21/2013
-// Design Name: Behavioral Logical AND (by n-bits)
-// Unit Name: Logical
-// Module Name: BehavioralLogicalAND
+// Licensing:    It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is 
+//               licensed under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // Project Name: Basic Logic
+// Unit Name:    Logical
+// Design Name:  Behavioral Logical AND (by n-bits)
 // Dependencies: None
 //-----------------------------------------------------------------------------
 `default_nettype none
@@ -34,9 +34,11 @@ module BehavioralLogicalAND
     //-------------------------------------------------------------------------
     // Combinational Logic
     //-------------------------------------------------------------------------
-    always_comb A = |a;
-    always_comb B = |b;
-    always_comb c = A & B;
+    always@* A = |a;
+    
+    always@* B = |b;
+    
+    always@* c = A & B;
 
     //-------------------------------------------------------------------------
     // Module instance(s)

@@ -82,6 +82,7 @@ export ALU_VERILOG_HDL_FILES := \
 	../../../../FixedPointArithmetic/hdl/FixedPointDivide.sv \
 	../../../../FixedPointArithmetic/hdl/FixedPointMultiply.sv \
 	../../../../FixedPointArithmetic/hdl/FixedPointArithmeticShift.sv \
+	../../../../FixedPointArithmetic/units/Subtract/hdl/RippleCarrySubtraction.sv \
 	../../../../FixedPointArithmetic/hdl/FixedPointSubtract.sv \
 	../../../../FixedPointArithmetic/hdl/FixedPointCountLeadingOnes.sv \
 	../../../../FixedPointArithmetic/hdl/FixedPointCountLeadingZeros.sv \

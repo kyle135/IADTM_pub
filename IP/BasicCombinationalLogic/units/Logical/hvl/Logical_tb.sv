@@ -1,7 +1,17 @@
+//-----------------------------------------------------------------------------
+// Licensing:    It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is 
+//               licensed under Creative Commons Attribution 4.0 International.
+// Company:      It's All Digital To Me
+// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// IP Name:      BasicCombinationalLogic
+// Unit Name:    Logical
+// Module Name:  Logical Test Bench
+// Dependencies: The design...
+//-----------------------------------------------------------------------------
 `ifndef __LOGICAL_TB__SV
     `define __LOGICAL_TB__SV 
 //---------------------------------------------------------------------------------
-// Test-Bench
+
 //---------------------------------------------------------------------------------
 module Logical_tb 
 #(  //-------------------------------------------------------------------------
@@ -12,7 +22,7 @@ module Logical_tb
     parameter integer N     = 32
 );
     import uvm_pkg::*;
-    import LogicalHDL_pkg::*;
+    import LogicalHVL_pkg::*;
 
     //-------------------------------------------------------------------------
     // Local TestBench Signals

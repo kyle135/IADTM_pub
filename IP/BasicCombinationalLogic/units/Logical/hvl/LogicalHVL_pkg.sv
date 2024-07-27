@@ -1,7 +1,7 @@
 
 
 
-package LogicalHDL_pkg;
+package LogicalHVL_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
@@ -51,4 +51,4 @@ package LogicalHDL_pkg;
 	`include "hvl/ScoreBoard/src/LogicalScoreboard.svh"
     `include "hvl/Environment/src/LogicalEnvironment.svh"
 	`include "hvl/Test/src/LogicalTest.svh"
-endpackage
+endpackage : LogicalHVL_pkg

@@ -28,17 +28,13 @@ module FixedPointSubtract_tb
     bit           carry_in;
     logic [N-1:0] c;
     logic [N-1:0] carry_out;
-
-
-
-
     
     FixedPointSubtract
     #(  //-----------------------------//------------------------------------
         // Parameter(s)                // Description(s)
         //-----------------------------//------------------------------------
         .N          ( 32            ), // Data path width in bits.
-        .ALGORITHM  ("BS_COMPLEMENT")  //
+        .ALGORITHM  ("RippleCarrySubtraction")  //
     )                                  //
     u_DUT                              //
     (   //-----------------------------//------------------------------------
@@ -55,39 +51,53 @@ module FixedPointSubtract_tb
     );    
 
 
-    initial forever  #5ns clk <= ~clk;
+    initial begin
+        // Reset Values
+        clk = 1;
+        forever
+            #5ns clk <= ~clk;
+    end
 
     initial begin        
-        
+        repeat (10) @(posedge clk);
+        $display("Out of simulated reset.");
+
+        $display("Test Case 1");
         a = 1;
         b = 0;
         carry_in = 0;
         @(posedge clk);
         $display("0x%08x - 0x%08x = 0x%08x", a, b, c);
-
+        
+        $display("Test Case 2");
         a = 0;
         b = 1;
         carry_in = 0;
         @(posedge clk);
         $display("0x%08x - 0x%08x = 0x%08x", a, b, c);
 
+        $display("Test Case 3");
         a =  0;
         b =  0;
         carry_in = 0;
         @(posedge clk);
         $display("0x%08x - 0x%08x = 0x%08x", a, b, c);
-
+        
+        $display("Test Case 4");
         a =  0;
         b = -1;
         carry_in = 0;
         @(posedge clk);
         $display("0x%08x - 0x%08x = 0x%08x", a, b, c);
 
+        $display("Test Case 5");
         a = -1;
         b =  0;
         carry_in = 0;        
         @(posedge clk);
         $display("0x%08x - 0x%08x = 0x%08x", a, b, c);
+
+        $finish;
     end
 
 

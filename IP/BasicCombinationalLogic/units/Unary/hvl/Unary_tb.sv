@@ -10,7 +10,7 @@ module Unary_tb
     parameter integer N     = 32
 );
     import uvm_pkg::*;
-    import UnaryHDL_pkg::*;
+    import UnaryHVL_pkg::*;
 
     //-------------------------------------------------------------------------
     // Local TestBench Signals
