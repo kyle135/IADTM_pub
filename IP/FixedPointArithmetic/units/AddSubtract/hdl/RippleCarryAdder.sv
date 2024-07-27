@@ -41,12 +41,12 @@
 // SOP: cout = (b·cin) + (a·cin) + (a·b)
 //           = cin·(a + b) + (a·b)
 //-----------------------------------------------------------------------------
-module AddRippleCarry
+module RippleCarryAdder
 #(  //--------------------------------------//---------------------------------
     // Parameters                           // Description(s)
     //--------------------------------------//---------------------------------
-    parameter int    N     = 32,            //
-    parameter string MODEL = "Structural"   //
+    parameter int    N     = 32,            // Datapath width in bits.
+    parameter string MODEL = "Structural"   // Which modeling technique are we using?
 )  (//--------------------------------------//---------------------------------
     // Inputs                               // Description(s)
     //--------------------------------------//---------------------------------
@@ -77,14 +77,13 @@ module AddRippleCarry
     //-------------------------------------------------------------------------
     generate
         if (MODEL == "Behavioral") begin : BEHAVIORAL_INTANSTIATION
-            BehavioralAddRippleCarry
+            BehavioralRippleCarryAdder
             #(  //----------------------------------//---------------------------------
                 // Parameters                       // Description(s)
                 //----------------------------------//---------------------------------
-                .N         ( N                   ), //
-                .MODEL     ( MODEL               )  //
+                .N         ( N                   )  // Data-path width in bits
             )                                       //
-            u_BehavioralAddRippleCarry              //
+            u_BehavioralRippleCarryAdder            //
             (   //----------------------------------//---------------------------------
                 // Inputs                           // Direction, Size & Description(s)
                 //----------------------------------//---------------------------------
@@ -99,14 +98,13 @@ module AddRippleCarry
             );                                      //
         end : BEHAVIORAL_INTANSTIATION
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
-            DataFlowAddRippleCarry
+            DataFlowRippleCarryAdder
             #(  //----------------------------------//---------------------------------
                 // Parameters                       // Description(s)
                 //----------------------------------//---------------------------------
-                .N         ( N                   ), //
-                .MODEL     ( MODEL               )  //
+                .N         ( N                   )  // Data-path width in bits
             )                                       //
-            u_DataFlowAddRippleCarry                //
+            u_DataFlowRippleCarryAdder              //
             (   //----------------------------------//---------------------------------
                 // Inputs                           // Direction, Size & Description(s)
                 //----------------------------------//---------------------------------
@@ -121,14 +119,13 @@ module AddRippleCarry
             );                                      //
         end : DATAFLOW_INTANSTIATION
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
-            StructuralAddRippleCarry
+            StructuralRippleCarryAdder
             #(  //----------------------------------//---------------------------------
                 // Parameters                       // Description(s)
                 //----------------------------------//---------------------------------
-                .N         ( N                   ), //
-                .MODEL     ( MODEL               )  //
+                .N         ( N                   )  // Data-path width in bits
             )                                       //
-            u_StructuralAddRippleCarry              //
+            u_StructuralRippleCarryAdder            //
             (   //----------------------------------//---------------------------------
                 // Inputs                           // Direction, Size & Description(s)
                 //----------------------------------//---------------------------------
@@ -144,4 +141,4 @@ module AddRippleCarry
         end : STRUCTURAL_INSTANTIATION
     endgenerate
 
-endmodule : AddRippleCarry
+endmodule : RippleCarryAdder
