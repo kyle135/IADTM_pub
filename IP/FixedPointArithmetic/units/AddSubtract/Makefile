@@ -11,18 +11,18 @@ THIS_MAKEFILE           := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 THIS_MAKEFILE_DIRECTORY := $(dir $(THIS_MAKEFILE))
 IP_DIRECTORY	        := $(abspath $(THIS_MAKEFILE_DIRECTORY)/../../..)
 IP_NAME                 := FixedPointArithmetic
-UNIT_NAME               := Add
+UNIT_NAME               := AddSubtract
+UC_UNIT_NAME            := $(shell echo -n "$(UNIT_NAME)" | tr 'a-z' 'A-Z')
 WORK_DIRECTORY          := $(IP_DIRECTORY)/$(IP_NAME)/units/$(UNIT_NAME)
 
 include $(IP_DIRECTORY)/inc/Tools.mk
 include $(WORK_DIRECTORY)/inc/$(UNIT_NAME)Filelist.mk
 
-VERILOG_HDL_FILES       := $(ADD_VERILOG_HDL_FILES)
-VERILOG_HVL_FILES       := $(ADD_VERILOG_HVL_FILES)
-MODELS                  := $(ADD_MODELS)
-TOPS                    := $(ADD_TOPS)
+VERILOG_HDL_FILES       := $($(UC_UNIT_NAME)_VERILOG_HDL_FILES)
+VERILOG_HVL_FILES       := $($(UC_UNIT_NAME)_VERILOG_HVL_FILES)
+MODELS                  := $($(UC_UNIT_NAME)_MODELS)
+TOPS                    := $($(UC_UNIT_NAME)_TOPS)
 WIDTH                   := 32
-ALGORITHMS              := $(ADD_ALGORITHMS)
 
 display:
 	@echo "[VLIB]           $(VLIB) $(VLIB_OPTS)"
@@ -32,6 +32,7 @@ display:
 	@echo "[IP_NAME]        $(IP_NAME)"
 	@echo "[UNIT_NAME]      $(UNIT_NAME)"
 	@echo "[WORK_DIRECTORY] $(WORK_DIRECTORY)"
+	@echo "[UC_UNIT_NAME]   $(UC_UNIT_NAME)"
 
 #------------------------------------------------------------------------------
 # Local Clean
@@ -62,9 +63,9 @@ compile_c_model_for_simulation: map_libraries
 # Compile Design Collateral
 #------------------------------------------------------------------------------
 compile_rtl_for_simulation: compile_c_model_for_simulation
-	$(info [$(UNIT)_VERILOG_HDL_FILES] $(VERILOG_HDL_FILES))
+	$(info [$(UC_UNIT_NAME)_VERILOG_HDL_FILES] $(VERILOG_HDL_FILES))
 	$(VLOG) -work $(UNIT_NAME)_work $(VERILOG_HDL_FILES) > $(UNIT_NAME)_vlog_hdl.log
-	$(info [$(UNIT)_VERILOG_HVL_FILES] $(VERILOG_HVL_FILES))
+	$(info [$(UC_UNIT_NAME)_VERILOG_HVL_FILES] $(VERILOG_HVL_FILES))
 	$(VLOG) -work $(UNIT_NAME)_work $(VERILOG_HVL_FILES) > $(UNIT_NAME)_vlog_hvl.log
 #----------------------------------------------------------------------------------------------------------------------
 # Optimize Design (for simulation speed-up)

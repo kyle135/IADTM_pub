@@ -248,7 +248,9 @@ void compute_results(
                         SPR_o_val = 0;
                     }
                     SPR_h_dat = SPR_h;
+                    SPR_h_val = 0;
                     SPR_l_dat = SPR_l;
+                    SPR_l_val = 0;
                     SPR_z_val = (uint32_t) c == 0;
                     break;
                 case SUBU_FUNC:
@@ -262,13 +264,18 @@ void compute_results(
                     // [Assembly]    SUBU c, a, b
                     // [Operation]   GPR[c] = GPR[a] - GPR[b]
                     GPR_a_dat = GPR_a;
+                    GPR_a_val = 0;
                     GPR_b_dat = GPR_b;
-                    // [Description] The 32-GPR_bt word value in GPR[b] is subtracted from the
-                    // 32-GPR_bt value in GPR[a] and the 32-GPR_bt arithmetic result and placed
-                    // into GPR[c].
-                    SPR_o_val =__builtin_usub_overflow(GPR_a, GPR_b, &GPR_c_dat);
+                    GPR_b_val = 0;
+                    a = (uint64_t) GPR_a & 0x00000000FFFFFFFF;
+                    b = (uint64_t) GPR_b & 0x00000000FFFFFFFF;
+                    GPR_c_dat = (uint32_t) (a - b);
+                    GPR_c_val = 1;
+                    GPR_c_val = 1;
                     SPR_h_dat = SPR_h;
+                    SPR_h_val = 0;
                     SPR_l_dat = SPR_l;
+                    SPR_l_val = 0;
                     // No integer overflow exception occurs under any GPR_crcumstance.
                     SPR_o_val = 0;
                     SPR_z_val = GPR_c_dat == 0;

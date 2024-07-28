@@ -298,7 +298,7 @@ module ALUAddSubtract
                     {SPR_l_val, SPR_l_dat} = {1'b0, SPR_l};
                     {SPR_o_val, SPR_z_val} = {SUB_carry_out, SUB_c == 32'd0};
                 end : SUB_INSTRUCTION            
-                {SUBU_OP,  5'b?????, 5'b?????, 5'b?????, 5'b?????, SUBU_FUNC}: begin : SUB_UNSIGNED_INSTRUCTION
+                {SUBU_OP,  5'b?????, 5'b?????, 5'b?????, 5'b00000, SUBU_FUNC}: begin : SUB_UNSIGNED_INSTRUCTION
                     //-----------------------------------------------------------------------------
                     //    31         26 25       21 20       16 15       11 10       6  5           0
                     //   .-------------.-----------.-----------.-----------.-----------.-------------.
