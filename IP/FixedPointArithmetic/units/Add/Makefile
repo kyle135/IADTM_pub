@@ -11,7 +11,7 @@ THIS_MAKEFILE           := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 THIS_MAKEFILE_DIRECTORY := $(dir $(THIS_MAKEFILE))
 IP_DIRECTORY	        := $(abspath $(THIS_MAKEFILE_DIRECTORY)/../../..)
 IP_NAME                 := FixedPointArithmetic
-UNIT_NAME               := AddSubtract
+UNIT_NAME               := Add
 UC_UNIT_NAME            := $(shell echo -n "$(UNIT_NAME)" | tr 'a-z' 'A-Z')
 WORK_DIRECTORY          := $(IP_DIRECTORY)/$(IP_NAME)/units/$(UNIT_NAME)
 
