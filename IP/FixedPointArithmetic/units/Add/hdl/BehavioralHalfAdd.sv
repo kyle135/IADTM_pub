@@ -24,17 +24,27 @@ module BehavioralHalfAdd
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output wire [N-1:0] c,      // Result
-    output wire         co      // Carry out
+    output reg  [N-1:0] c,      // Result
+    output reg          co      // Carry out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    reg [N-1:0] not_b;
+    reg [N-1:0] not_a;
+    reg [N-1:0] not_a_and_b;
+    reg [N-1:0] a_and_not_b;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
+    always@* not_a       = ~a;
+    always@* not_b       = ~b;
+    always@* not_a_and_b = not_a & b;
+    always@* a_and_not_b = a & not_b;
+    always@* c           = not_a_and_b | a_and_not_b;
+    always@* co          = a & b;
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

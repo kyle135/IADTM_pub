@@ -8,14 +8,11 @@
 // Algorithm:   ReducedFullAdd
 // Model:       Behavioral
 // Description: 
+//
 //-----------------------------------------------------------------------------
 `default_nettype none
 module BehavioraReducedFullAdd
-#(  //--------------------------//---------------------------------------------
-    // Parameters               // Descriptions
-    //--------------------------//---------------------------------------------
-    parameter integer   N = 32  // Datapath width in bits
-)  (//--------------------------//---------------------------------------------
+(   //--------------------------//---------------------------------------------
     // Inputs                   // Descriptions
     //--------------------------//---------------------------------------------
     input  wire [N-1:0] a,      // Operand A
@@ -24,18 +21,32 @@ module BehavioraReducedFullAdd
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output wire [N-1:0] c,      // Result
-    output wire         co      // Carry out
+    output reg  [N-1:0] c,      // Result
+    output reg          cp,     // Carry Propagate
+    output reg          cg      // Carry Generate
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    reg not_cg;
+    reg pre;
+    reg pre_and_cin;
+    reg pre_or_cin;
+    reg not_pre_and_cin;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    
+    always@* cg              = a & b;
+    always@* cp              = a | b;
+    always@* not_cg          = ~cg;
+    always@* pre             = not_cg & cp;
+
+    always@* pre_and_cin     = pre & cin;
+    always@* pre_or_cin      = pre | cin;
+    always@* not_pre_and_cin = ~pre_and_cin;
+    always@* c               = not_pre_and_cin & pre_or_cin;
     //-------------------------------------------------------------------------
     // Synchronous Logic
     //-------------------------------------------------------------------------
@@ -46,4 +57,3 @@ module BehavioraReducedFullAdd
 
 endmodule : BehavioralReducedFullAdd
 `default_nettype wire
-

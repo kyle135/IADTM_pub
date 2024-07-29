@@ -24,17 +24,29 @@ module BehavioralFullAdd
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output wire [N-1:0] c,      // Result
-    output wire         co      // Carry out
+    output reg  [N-1:0] c,      // Result
+    output reg          co      // Carry out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    reg a_xor_b;
+    reg a_or_b;
+    reg a_and_b;
+    reg a_or_b_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
+    // Summation Logic
+    always@* a_xor_b       = a ^ b;
+    always@* c             = a_xor_b ^ ci; 
+    // Carry Logic
+    always@* a_and_b       = a & b;
+    always@* a_or_b        = a | b;
+    always@* a_or_b_and_ci = a_or_b & ci;
+    always@* co            = a_or_b_and_ci | ci;
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

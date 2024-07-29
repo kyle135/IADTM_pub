@@ -31,10 +31,20 @@ module DataFlowHalfAdd
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    wire [N-1:0] not_b;
+    wire [N-1:0] not_a;
+    wire [N-1:0] not_a_and_b;
+    wire [N-1:0] a_and_not_b;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
+    assign not_a       = ~a;
+    assign not_b       = ~b;
+    assign not_a_and_b = not_a & b;
+    assign a_and_not_b = a & not_b;
+    assign c           = not_a_and_b | a_and_not_b;
+    assign co          = a & b;
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

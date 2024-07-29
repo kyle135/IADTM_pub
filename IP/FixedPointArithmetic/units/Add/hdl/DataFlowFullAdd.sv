@@ -32,10 +32,22 @@ module DataFlowFullAdd
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    wire a_xor_b;
+    wire a_or_b;
+    wire a_and_b;
+    wire a_or_b_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
+    // Summation Logic
+    assign a_xor_b       = a ^ b;
+    assign c             = a_xor_b ^ ci; 
+    // Carry Logic
+    assign a_and_b       = a & b;
+    assign a_or_b        = a | b;
+    assign a_or_b_and_ci = a_or_b & ci;
+    assign co            = a_or_b_and_ci | ci;
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

@@ -56,6 +56,9 @@ export ADD_VERILOG_HDL_FILES      := \
     $(ADD_HDL_DIRECTORY)/DataFlowPrefixAdd.sv \
     $(ADD_HDL_DIRECTORY)/DataFlowReducedFullAdd.sv \
     $(ADD_HDL_DIRECTORY)/DataFlowRippleCarryAdd.sv \
+    $(ADD_HDL_DIRECTORY)/FullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/HalfAdd.sv \
+    $(ADD_HDL_DIRECTORY)/ReducedFullAdd.sv \
     $(ADD_HDL_DIRECTORY)/RippleCarryAdd.sv \
     $(ADD_HDL_DIRECTORY)/StructuralBlockCarryLookAheadAdd.sv \
     $(ADD_HDL_DIRECTORY)/StructuralCarryLookAheadAdd.sv\

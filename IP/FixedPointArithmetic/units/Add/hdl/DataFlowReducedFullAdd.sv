@@ -7,34 +7,46 @@
 // Unit Name:   Add
 // Algorithm:   ReducedFullAdd
 // Model:       DataFlow
-// Description: 
+// Description:
+//
 //-----------------------------------------------------------------------------
 `default_nettype none
 module DataFlowReducedFullAdd
-#(  //--------------------------//---------------------------------------------
-    // Parameters               // Descriptions
-    //--------------------------//---------------------------------------------
-    parameter integer   N = 32  // Datapath width in bits
-)  (//--------------------------//---------------------------------------------
-    // Inputs                   // Descriptions
-    //--------------------------//---------------------------------------------
-    input  wire [N-1:0] a,      // Operand A
-    input  wire [N-1:0] b,      // Operand B
-    input  wire         ci,     // Carry in
-    //--------------------------//--------------------------------------------
-    // Outputs                  // Descriptions
-    //--------------------------//---------------------------------------------
-    output wire [N-1:0] c,      // Result
-    output wire         co      // Carry out
+(   //------------------//-----------------------------------------------------
+    // Inputs           // Descriptions
+    //------------------//-----------------------------------------------------
+    input  wire a,      // Operand A
+    input  wire b,      // Operand B
+    input  wire ci,     // Carry in
+    //------------------//-----------------------------------------------------
+    // Outputs          // Descriptions
+    //------------------//-----------------------------------------------------
+    output wire c,      // Result
+    output wire cp,     // Carry Propagate
+    output wire cg      // Carry Generate
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    wire not_cg;
+    wire pre;
+    wire pre_and_cin;
+    wire pre_or_cin;
+    wire not_pre_and_cin;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
+    assign cg              = a & b;
+    assign cp              = a | b;
+    assign not_cg          = ~cg;
+    assign pre             = not_cg & cp;
+
+    assign pre_and_cin     = pre & cin;
+    assign pre_or_cin      = pre | cin;
+    assign not_pre_and_cin = ~pre_and_cin;
+    assign c               = not_pre_and_cin & pre_or_cin;
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

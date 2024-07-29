@@ -5,28 +5,27 @@
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
-// Algorithm:   CarrySaveAdd
+// Algorithm:   ReducedFullAdd
 // Modeling:    Behavioral, Dataflow, Structural
 // Description: 
 //-----------------------------------------------------------------------------
 `default_nettype none
-module CarrySaveAdd
+module ReducedFullAdd
 #(  //--------------------------------------//---------------------------------
     // Parameters                           // Descriptions
     //--------------------------------------//---------------------------------
-    parameter integer N     = 32,           // Datapath width in bits.
     parameter string  MODEL = "Behavioral"  // Which modeling style
 )  (//--------------------------------------//---------------------------------
     // Inputs                               // Descriptions
     //--------------------------------------//---------------------------------
-    input  wire [N-1:0] a,                  // Operand A
-    input  wire [N-1:0] b,                  // Operand B
-    input  wire         ci,                 // Carry in
+    input  wire a,                          // Operand A
+    input  wire b,                          // Operand B
+    input  wire ci,                         // Carry in
     //--------------------------------------//---------------------------------
     // Outputs                              // Descriptions
     //--------------------------------------//---------------------------------
-    output wire [N-1:0] c,                  // Result C
-    output wire         co                  // Carry out
+    output wire c,                          // Result C
+    output wire co                          // Carry out
 );
 
     //-------------------------------------------------------------------------
@@ -34,7 +33,7 @@ module CarrySaveAdd
     //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------
-    // Combinational Logic
+    // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
     
     //-------------------------------------------------------------------------
@@ -46,69 +45,51 @@ module CarrySaveAdd
     //-------------------------------------------------------------------------
     generate
         if (MODEL == "Behavioral") begin : BEHAVIORAL_INTANSTIATION
-            BehavioralCarrySaveAdd
-            #(  //---------------------//--------------------------------------
-                // Parameters          // Descriptions
-                //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
-            )                          //
-            u_BehavioralCarrySaveAdd   //
+            BehavioralReducedFullAdd u_BehavioralReducedFullAdd
             (   //---------------------//--------------------------------------
                 // Inputs              // Direction, Size & Descriptions
-                //---------------------//---------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
+                //---------------------//--------------------------------------
+                .a    ( a           ), // [I][1] Operand A
+                .b    ( b           ), // [I][1] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
+                .c    ( c           ), // [O][1] Result Sum
                 .co   ( co          )  // [O][1] Result Carry
             );                         //
         end : BEHAVIORAL_INTANSTIATION
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
-            DataFlowCarrySaveAdd
-            #(  //---------------------//--------------------------------------
-                // Parameters          // Descriptions
-                //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
-            )                          //
-            u_DataFlowCarrySaveAdd     //
+            DataFlowReducedFullAdd u_DataFlowReducedFullAdd
             (   //---------------------//--------------------------------------
                 // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
+                .a    ( a           ), // [I][1] Operand A
+                .b    ( b           ), // [I][1] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
+                .c    ( c           ), // [O][1] Result Sum
                 .co   ( co          )  // [O][1] Result Carry
             );                         //
         end : DATAFLOW_INTANSTIATION
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
-            StructuralCarrySaveAdd
-            #(  //---------------------//--------------------------------------
-                // Parameters          // Descriptions
-                //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
-            )                          //
-            u_StructuralCarrySaveAdd   //
+            StructuralReducedFullAdd u_StructuralReducedFullAdd
             (   //---------------------//--------------------------------------
                 // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
+                .a    ( a           ), // [I][1] Operand A
+                .b    ( b           ), // [I][1] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
+                .c    ( c           ), // [O][1] Result Sum
                 .co   ( co          )  // [O][1] Result Carry
             );                         //
         end : STRUCTURAL_INSTANTIATION
     endgenerate
 
-endmodule : CarrySaveAdd
+endmodule : ReducedFullAdd
 `default_nettype wire
