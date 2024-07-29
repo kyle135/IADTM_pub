@@ -11,23 +11,23 @@
 //-----------------------------------------------------------------------------
 `default_nettype none
 module CarrySkipAdd
-    #(  //--------------------------------------//---------------------------------
-        // Parameters                           // Description(s)
-        //--------------------------------------//---------------------------------
-        parameter integer N     = 32,           // Datapath width in bits.
-        parameter string  MODEL = "Behavioral"  // Which modelling style
-    )  (//--------------------------------------//---------------------------------
-        // Inputs                               // Description(s)
-        //--------------------------------------//---------------------------------
-        input  wire [N-1:0] a,                  // Operand A
-        input  wire [N-1:0] b,                  // Operand B
-        input  wire         ci,                 // Carry in
-        //--------------------------------------//---------------------------------
-        // Outputs                              // Description(s)
-        //--------------------------------------//---------------------------------
-        output wire [N-1:0] c,                  // Result C
-        output wire         co                  // Carry out
-    );
+#(  //--------------------------------------//---------------------------------
+    // Parameters                           // Description(s)
+    //--------------------------------------//---------------------------------
+    parameter integer N     = 32,           // Datapath width in bits.
+    parameter string  MODEL = "Behavioral"  // Which modelling style
+)  (//--------------------------------------//---------------------------------
+    // Inputs                               // Description(s)
+    //--------------------------------------//---------------------------------
+    input  wire [N-1:0] a,                  // Operand A
+    input  wire [N-1:0] b,                  // Operand B
+    input  wire         ci,                 // Carry in
+    //--------------------------------------//---------------------------------
+    // Outputs                              // Description(s)
+    //--------------------------------------//---------------------------------
+    output wire [N-1:0] c,                  // Result C
+    output wire         co                  // Carry out
+);
     
 
     generate

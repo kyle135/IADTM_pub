@@ -3,26 +3,30 @@
 //               under Creative Commons Attribution 4.0 International.
 // Company:      It's All Digital To Me
 // Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
-//
+// IP Name:     FixedPointArithmetic
+// Unit Name:   Add
+// Algorithm:   CarryLookAheadAdd
+// Model:       Structural
+// Description: 
 //-----------------------------------------------------------------------------
 `default_nettype none
-module StructuralRippleCarryLookAheadAddSubtract
-    #(  //--------------------------//-----------------------------------------
-        // Parameter(s)             // Description(s)
-        //--------------------------//-----------------------------------------
-        parameter integer   N = 32  // Datapath width in bits.
-    )  (//--------------------------//-----------------------------------------
-        // Inputs                   // Description(s)
-        //--------------------------//-----------------------------------------
-        input  wire [N-1:0] a,      // Operand A
-        input  wire [N-1:0] b,      // Operand B
-        input  wire [N-1:0] ci,     // Carry In
-        //--------------------------//-----------------------------------------
-        // Outputs                  // Description(s)
-        //--------------------------//-----------------------------------------
-        output wire [N-1:0] c,      // Result C
-        output wire         co      // Carry Out
-    );
+module StructuralCarryLookAheadAdd
+#(  //--------------------------//-----------------------------------------
+    // Parameter(s)             // Description(s)
+    //--------------------------//-----------------------------------------
+    parameter integer   N = 32  // Datapath width in bits.
+)  (//--------------------------//-----------------------------------------
+    // Inputs                   // Description(s)
+    //--------------------------//-----------------------------------------
+    input  wire [N-1:0] a,      // Operand A
+    input  wire [N-1:0] b,      // Operand B
+    input  wire [N-1:0] ci,     // Carry In
+    //--------------------------//-----------------------------------------
+    // Outputs                  // Description(s)
+    //--------------------------//-----------------------------------------
+    output wire [N-1:0] c,      // Result C
+    output wire         co      // Carry Out
+);
     
     //-------------------------------------------------------------------------
     // Local Signals
@@ -89,5 +93,5 @@ module StructuralRippleCarryLookAheadAddSubtract
 
 
 
-endmodule : StructuralRippleCarryLookAheadAddSubtract
+endmodule : StructuralCarryLookAheadAdd
 `default_nettype wire

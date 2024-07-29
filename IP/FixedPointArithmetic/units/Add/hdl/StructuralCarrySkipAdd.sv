@@ -6,7 +6,7 @@
 //
 //-----------------------------------------------------------------------------
 `default_nettype none
-module StructuralCarrySkipAdder
+module StructuralCarrySkipAdd
 #(  //--------------------------------------//---------------------------------
     // Parameters                           // Description(s)
     //--------------------------------------//---------------------------------
@@ -33,7 +33,7 @@ module StructuralCarrySkipAdder
     // Module Instantiation
     //-------------------------------------------------------------------------            
     genvar i;
-    generate for (i = 0; i < N; i = i + 1) begin : STRUCTURAL_FULL_ADDER_GENERATION
+    generate for (i = 0; i < N; i = i + 1) begin : STRUCTURAL_GENERATION
         // Summation Logic
         xor u_a_xor_b(a_xor_b[i], a[i], b[i]);
         if (i == 0) xor u_a_xor_b_xor_carry_in(c[i], a_xor_b[i], carry_in); 
@@ -46,8 +46,8 @@ module StructuralCarrySkipAdder
                     
         if (i == N-1) or  u_a_or_b_and_carry_in_or_a_and_b(carry_out, a_or_b_and_carry_in[i], carry[i-1]);
         else          or  u_a_or_b_and_carry_in_or_a_and_b(carry[i],  a_or_b_and_carry_in[i], carry[i-1]);
-    end : STRUCTURAL_FULL_ADDER_GENERATION
+    end : STRUCTURAL_GENERATION
     endgenerate
     
-endmodule : StructuralCarrySkipAdder
+endmodule : StructuralCarrySkipAdd
 `default_nettype wire

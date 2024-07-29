@@ -29,42 +29,45 @@ export ADD_TOPS                  := \
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
 export ADD_VERILOG_HDL_FILES      := \
-	$(ADD_HDL_DIRECTORY)/BehavioralHalfAdd.sv \
-	$(ADD_HDL_DIRECTORY)/BehavioralFullAdd.sv \
-	$(ADD_HDL_DIRECTORY)/BehavioralRippleCarryAdd.sv \
-	$(ADD_HDL_DIRECTORY)/BehavioralReducedFullAdd.sv \
-	$(ADD_HDL_DIRECTORY)/BehavioralCarryLookAheadGenerator.sv \
-	$(ADD_HDL_DIRECTORY)/BehavioralCarryLookAheadAdd.sv \
     $(ADD_HDL_DIRECTORY)/BehavioralBlockCarryLookAheadAdd.sv \
-    $(ADD_HDL_DIRECTORY)/BehavioralCarrySkipAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralCarryLookAheadAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralCarryLookAheadGenerator.sv \
     $(ADD_HDL_DIRECTORY)/BehavioralCarrySaveAdd.sv \
     $(ADD_HDL_DIRECTORY)/BehavioralCarrySelectAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowHalfAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowFullAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowRippleCarryAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowReducedFullAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowCarryLookAheadGenerator.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowCarryLookAheadAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowBlockCarryLookAheadAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowCarrySkipAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowCarrySaveAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowCarrySelectAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowHalfAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowFullAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowRippleCarryAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowReducedFullAdd.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowCarryLookAheadGenerator.sv \
-	$(ADD_HDL_DIRECTORY)/DataFlowCarryLookAheadAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowBlockCarryLookAheadAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowCarrySkipAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowCarrySaveAdd.sv \
-    $(ADD_HDL_DIRECTORY)/DataFlowCarrySelectAdd.sv \
-    $(ADD_HDL_DIRECTORY)/RippleCarryAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralCarrySkipAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralFullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralHalfAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralPrefixAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralReducedFullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BehavioralRippleCarryAdd.sv \
+    $(ADD_HDL_DIRECTORY)/BlockCarryLookAheadAdd.sv \
     $(ADD_HDL_DIRECTORY)/CarryLookAheadAdd.sv \
-	$(ADD_HDL_DIRECTORY)/BlockCarryLookAheadAdd.sv \
-    $(ADD_HDL_DIRECTORY)/CarrySkipAdd.sv \
     $(ADD_HDL_DIRECTORY)/CarrySaveAdd.sv \
-    $(ADD_HDL_DIRECTORY)/CarrySelectAdd.sv
+    $(ADD_HDL_DIRECTORY)/CarrySelectAdd.sv \
+    $(ADD_HDL_DIRECTORY)/CarrySkipAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowBlockCarryLookAheadAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowCarryLookAheadAdd.sv\
+    $(ADD_HDL_DIRECTORY)/DataFlowCarryLookAheadGenerator.sv\
+    $(ADD_HDL_DIRECTORY)/DataFlowCarrySaveAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowCarrySelectAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowCarrySkipAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowFullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowHalfAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowPrefixAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowReducedFullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/DataFlowRippleCarryAdd.sv \
+    $(ADD_HDL_DIRECTORY)/RippleCarryAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralBlockCarryLookAheadAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralCarryLookAheadAdd.sv\
+    $(ADD_HDL_DIRECTORY)/StructuralCarryLookAheadGenerator.sv\
+    $(ADD_HDL_DIRECTORY)/StructuralCarrySaveAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralCarrySelectAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralCarrySkipAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralFullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralHalfAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralPrefixAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralReducedFullAdd.sv \
+    $(ADD_HDL_DIRECTORY)/StructuralRippleCarryAdd.sv
 
 #----------------------------------------------------------------------------------------
 # Specify Verilog Simulation Files
