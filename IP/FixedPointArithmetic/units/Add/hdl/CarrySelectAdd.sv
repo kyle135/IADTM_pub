@@ -4,49 +4,48 @@
 // Company:     It's All Digital To Me
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
-// Unit Name:   AddSubtract
+// Unit Name:   Add
 // Algorithm:   CarrySelectAdd
 // Modeling:    Behavioral, Dataflow, Structural
 // Description: 
 //-----------------------------------------------------------------------------
 `default_nettype none
 module CarrySelectAdd
-    #(  //--------------------------------------//---------------------------------
-        // Parameters                           // Description(s)
-        //--------------------------------------//---------------------------------
-        parameter integer N     = 32,           // Datapath width in bits.
-        parameter string  MODEL = "Behavioral"  // Which modelling style
-    )  (//--------------------------------------//---------------------------------
-        // Inputs                               // Description(s)
-        //--------------------------------------//---------------------------------
-        input  wire [N-1:0] a,                  // Operand A
-        input  wire [N-1:0] b,                  // Operand B
-        input  wire         ci,                 // Carry in
-        //--------------------------------------//---------------------------------
-        // Outputs                              // Description(s)
-        //--------------------------------------//---------------------------------
-        output wire [N-1:0] c,                  // Result C
-        output wire         co                  // Carry out
-    );
-    
+#(  //--------------------------------------//---------------------------------
+    // Parameters                           // Descriptions
+    //--------------------------------------//---------------------------------
+    parameter integer N     = 32,           // Datapath width in bits.
+    parameter string  MODEL = "Behavioral"  // Which modelling style
+)  (//--------------------------------------//---------------------------------
+    // Inputs                               // Descriptions
+    //--------------------------------------//---------------------------------
+    input  wire [N-1:0] a,                  // Operand A
+    input  wire [N-1:0] b,                  // Operand B
+    input  wire         ci,                 // Carry in
+    //--------------------------------------//---------------------------------
+    // Outputs                              // Descriptions
+    //--------------------------------------//---------------------------------
+    output wire [N-1:0] c,                  // Result C
+    output wire         co                  // Carry out
+);
 
     generate
         if (MODEL == "Behavioral") begin : BEHAVIORAL_INTANSTIATION
             BehavioralCarrySelectAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_BehavioralCarrySelectAdd //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//---------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
@@ -55,19 +54,19 @@ module CarrySelectAdd
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
             DataFlowCarrySelectAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_DataFlowCarrySelectAdd   //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
@@ -76,19 +75,19 @@ module CarrySelectAdd
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
             StructuralCarrySelectAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_StructuralCarrySelectAdd //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry

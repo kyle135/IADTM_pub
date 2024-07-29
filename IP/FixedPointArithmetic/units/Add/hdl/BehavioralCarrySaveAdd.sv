@@ -1,38 +1,48 @@
 //-----------------------------------------------------------------------------
-// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
-//               under Creative Commons Attribution 4.0 International.
-// Company:      It's All Digital To Me
-// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
-//
+// Licensing:   It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is licensed 
+//              under Creative Commons Attribution 4.0 International.
+// Company:     It's All Digital To Me
+// Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// IP Name:     FixedPointArithmetic
+// Unit Name:   AddSubtract
+// Algorithm:   CarrySaveAdd
+// Model:       Behavioral
+// Description:
 //-----------------------------------------------------------------------------
 `default_nettype none
 module BehavioralCarrySaveAdd
-#(  //--------------------------//---------------------------------------------
-    // Parameters               // Description(s)
+#(  //--------------------------//----------------------------------------------
+    // Parameters               // Descriptions
     //--------------------------//---------------------------------------------
-    parameter integer   N = 32  //
+    parameter integer   N = 32  // Datapath width in bits
 )  (//--------------------------//---------------------------------------------
-    // Inputs                   // Description(s)
+    // Inputs                   // Descriptions
     //--------------------------//---------------------------------------------
-    input  wire [N-1:0] a,      //
-    input  wire [N-1:0] b,      //
-    input  wire         ci,     //
+    input  wire [N-1:0] a,      // Operand A
+    input  wire [N-1:0] b,      // Operand B
+    input  wire         ci,     // Carry in
     //--------------------------//---------------------------------------------
-    // Outputs                  // Description(s)
+    // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output reg  [N-1:0] c,      //
-    output reg          co      //
+    output wire [N-1:0] c,      // Result
+    output wire         co      // Carry out
 );
 
     //-------------------------------------------------------------------------
     // Local Signals
     //-------------------------------------------------------------------------
 
+    //-------------------------------------------------------------------------
+    // Continuous Assignments and Combination Logic
+    //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------
-    // Combinational Logic
+    // Synchronous Logic
     //-------------------------------------------------------------------------
 
+    //-------------------------------------------------------------------------
+    // Module Instantiation
+    //-------------------------------------------------------------------------            
 
 endmodule : BehavioralCarrySaveAdd
 `default_nettype wire

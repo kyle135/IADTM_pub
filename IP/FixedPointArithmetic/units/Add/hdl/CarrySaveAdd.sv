@@ -4,7 +4,7 @@
 // Company:     It's All Digital To Me
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
-// Unit Name:   AddSubtract
+// Unit Name:   Add
 // Algorithm:   CarrySaveAdd
 // Modeling:    Behavioral, Dataflow, Structural
 // Description: 
@@ -12,18 +12,18 @@
 `default_nettype none
 module CarrySaveAdd
 #(  //--------------------------------------//---------------------------------
-    // Parameters                           // Description(s)
+    // Parameters                           // Descriptions
     //--------------------------------------//---------------------------------
     parameter integer N     = 32,           // Datapath width in bits.
     parameter string  MODEL = "Behavioral"  // Which modeling style
 )  (//--------------------------------------//---------------------------------
-    // Inputs                               // Description(s)
+    // Inputs                               // Descriptions
     //--------------------------------------//---------------------------------
     input  wire [N-1:0] a,                  // Operand A
     input  wire [N-1:0] b,                  // Operand B
     input  wire         ci,                 // Carry in
     //--------------------------------------//---------------------------------
-    // Outputs                              // Description(s)
+    // Outputs                              // Descriptions
     //--------------------------------------//---------------------------------
     output wire [N-1:0] c,                  // Result C
     output wire         co                  // Carry out
@@ -48,19 +48,19 @@ module CarrySaveAdd
         if (MODEL == "Behavioral") begin : BEHAVIORAL_INTANSTIATION
             BehavioralCarrySaveAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_BehavioralCarrySaveAdd   //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//---------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
@@ -69,19 +69,19 @@ module CarrySaveAdd
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
             DataFlowCarrySaveAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_DataFlowCarrySaveAdd     //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
@@ -90,19 +90,19 @@ module CarrySaveAdd
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
             StructuralCarrySaveAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_StructuralCarrySaveAdd   //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry

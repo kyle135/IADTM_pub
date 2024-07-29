@@ -1,8 +1,8 @@
 //-----------------------------------------------------------------------------
-// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
-//               under Creative Commons Attribution 4.0 International.
-// Company:      It's All Digital To Me
-// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// Licensing:   It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is licensed 
+//              under Creative Commons Attribution 4.0 International.
+// Company:     It's All Digital To Me
+// Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
 // Algorithm:   BlockCarryLookAheadAdd
@@ -11,21 +11,21 @@
 //-----------------------------------------------------------------------------
 `default_nettype none
 module StructuralBlockCarryLookAheadAdd
-#(  //--------------------------------------//---------------------------------
-    // Parameters                           // Description(s)
-    //--------------------------------------//---------------------------------
-    parameter integer   N = 32              //
-)  (//--------------------------------------//---------------------------------
-    // Inputs                               // Description(s)
-    //--------------------------------------//---------------------------------
-    input  wire [N-1:0] a,                  //
-    input  wire [N-1:0] b,                  //
-    input  wire         ci,                 //
-    //--------------------------------------//---------------------------------
-    // Outputs                              // Description(s)
-    //--------------------------------------//---------------------------------
-    output wire [N-1:0] c,                  //
-    output wire         co                  //
+#(  //--------------------------//---------------------------------------------
+    // Parameters               // Descriptions
+    //--------------------------//---------------------------------------------
+    parameter integer   N = 32  // Datapath width in bits
+)  (//--------------------------//---------------------------------------------
+    // Inputs                   // Descriptions
+    //--------------------------//---------------------------------------------
+    input  wire [N-1:0] a,      // Operand A
+    input  wire [N-1:0] b,      // Operand B
+    input  wire         ci,     // Carry in
+    //--------------------------//---------------------------------------------
+    // Outputs                  // Descriptions
+    //--------------------------//---------------------------------------------
+    output wire [N-1:0] c,      // Result C
+    output wire         co      // Carry out
 );
     
     //-------------------------------------------------------------------------
@@ -33,7 +33,7 @@ module StructuralBlockCarryLookAheadAdd
     //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------
-    // Combinational Logic
+    // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------

@@ -5,14 +5,15 @@
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
-// Algorithm:   RippleCarryLookAheadAdd
+// Algorithm:   CarryLookAheadAdd
 // Model:       DataFlow
 // Description: 
+//
 //-----------------------------------------------------------------------------
 `default_nettype none
-module DataFlowRippleCarryLookAheadAdd
+module DataFlowCarryLookAheadAdd
 #(  //--------------------------------------//---------------------------------
-    // Parameter(s)                         // Description(s)
+    // Parameters                           // Descriptions
     //--------------------------------------//---------------------------------
     parameter integer N     = 32,           //
     parameter string  MODEL = "DataFlow"    //
@@ -35,7 +36,7 @@ module DataFlowRippleCarryLookAheadAdd
     wire [N-1:0] cx;
 
     //-------------------------------------------------------------------------
-    // Combinational Logic
+    // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
     assign c = a ^ b ^ {cx[N-2:0], ci};
     assign cx = {cx[N-2:0], ci} & (a | b) | (a & b);
@@ -46,8 +47,8 @@ module DataFlowRippleCarryLookAheadAdd
     //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------
-    // Module Instances
+    // Module Instantiation
     //-------------------------------------------------------------------------
 
-endmodule : DataFlowRippleCarryLookAheadAdd
+endmodule : DataFlowCarryLookAheadAdd
 `default_nettype wire

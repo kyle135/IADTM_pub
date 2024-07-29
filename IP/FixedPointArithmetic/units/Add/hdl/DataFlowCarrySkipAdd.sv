@@ -5,7 +5,9 @@
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
-
+// Algorithm:   CarrySkipAdd
+// Model:       DataFlow
+// Description:
 //-----------------------------------------------------------------------------
 `default_nettype none
 module DataFlowCarrySkipAdd
@@ -26,7 +28,21 @@ module DataFlowCarrySkipAdd
     output wire         co      // Carry out
 );
 
+    //-------------------------------------------------------------------------
+    // Local Nets
+    //-------------------------------------------------------------------------
 
+    //-------------------------------------------------------------------------
+    // Continuous Assignments and Combinational Logic
+    //-------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------
+    // Synchronous Logic
+    //-------------------------------------------------------------------------
+
+    //-------------------------------------------------------------------------
+    // Module Instantiation
+    //-------------------------------------------------------------------------
 
 endmodule : DataFlowCarrySkipAdd
 `default_nettype wire

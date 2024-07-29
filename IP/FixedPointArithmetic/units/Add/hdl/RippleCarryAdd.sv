@@ -4,9 +4,9 @@
 // Company:     It's All Digital To Me
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
-// Unit Name:   AddSubtract
+// Unit Name:   AddS
 // Algorithm:   RippleCarryAdd
-// Modeling:    Behavioral, Dataflow, Structural
+// Model:       Behavioral, Dataflow, Structural
 // Description:
 // SUM:
 //     Truth Table                      K-Map
@@ -48,18 +48,18 @@
 `default_nettype none
 module RippleCarryAdd
 #(  //--------------------------------------//---------------------------------
-    // Parameters                           // Description(s)
+    // Parameters                           // Descriptions
     //--------------------------------------//---------------------------------
     parameter integer N     = 32,           // Datapath width in bits.
     parameter string  MODEL = "Behavioral"  // Which modeling style
 )  (//--------------------------------------//---------------------------------
-    // Inputs                               // Description(s)
+    // Inputs                               // Descriptions
     //--------------------------------------//---------------------------------
     input  wire [N-1:0] a,                  // Operand A
     input  wire [N-1:0] b,                  // Operand B
     input  wire         ci,                 // Carry in
     //--------------------------------------//---------------------------------
-    // Outputs                              // Description(s)
+    // Outputs                              // Descriptions
     //--------------------------------------//---------------------------------
     output reg  [N-1:0] c,                  // Result C
     output reg          co                  // Carry out
@@ -70,11 +70,11 @@ module RippleCarryAdd
     //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------
-    // Combinational Logic
+    // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
     
     //-------------------------------------------------------------------------
-    // Sequential Logic
+    // Synchronous Logic
     //-------------------------------------------------------------------------
 
     //-------------------------------------------------------------------------
@@ -84,19 +84,19 @@ module RippleCarryAdd
         if (MODEL == "Behavioral") begin : BEHAVIORAL_INTANSTIATION
             BehavioralRippleCarryAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_BehavioralRippleCarryAdd //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//---------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs           // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
@@ -105,19 +105,19 @@ module RippleCarryAdd
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
             DataFlowRippleCarryAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_DataFlowRippleCarryAdd   //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
@@ -126,19 +126,19 @@ module RippleCarryAdd
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
             StructuralRippleCarryAdd
             #(  //---------------------//--------------------------------------
-                // Parameter(s)        // Description(s)
+                // Parameters          // Descriptions
                 //---------------------//--------------------------------------
                 .N    ( N           )  // Data-path width in bits
             )                          //
             u_StructuralRippleCarryAdd //
             (   //---------------------//--------------------------------------
-                // Input(s)            // Direction, Size & Description(s)
+                // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
                 .cin  ( cin         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
-                // Output(s)           // Direction, Size & Description(s)
+                // Outputs           // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
                 .cout ( cout        )  // [O][1] Result Carry
