@@ -32,14 +32,14 @@ module BehavioralRippleCarryAdd
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    reg [N-1:0] cx;             // Internal carry chain
+    reg [N:0] cx;             // Internal carry chain
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    always@* c  = a ^ b ^ {cx[N-2:0], ci};
-    always@* cx = {cx[N-2:0], ci} & (a | b) | (a & b);
-    always@* co = cx[N-1];
+    always@* c  = a ^ b ^ {cx[N-1:0], ci};
+    always@* cx = ({cx[N-1:0], ci} & (a | b)) | (a & b);
+    always@* co = cx[N];
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

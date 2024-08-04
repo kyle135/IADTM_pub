@@ -48,7 +48,7 @@ module StructuralRippleCarryAdd
     //-------------------------------------------------------------------------            
     genvar i;
     generate for (i = 0; i < N; i = i + 1) begin : STRUCTURAL_GENERATION
-        StructuralFullAdder
+        StructuralFullAdd u_StructuralFullAdd
         (   //---------------//------------------------------------------------
             // Inputs      // Direction, Size & Descriptions
             //---------------//------------------------------------------------

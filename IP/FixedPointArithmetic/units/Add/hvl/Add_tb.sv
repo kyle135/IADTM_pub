@@ -7,10 +7,10 @@ module Add_tb
 #(  //-------------------------------------------------------------------------
     // Parameter(s)
     //-------------------------------------------------------------------------
-    parameter string  DUT       = "Add",
-    parameter integer N         = 32,
-    parameter string  MODEL     = "Strucutural",
-    parameter string  ALGORITHM = "RippleCarry"
+    parameter string  DUT   = "Add",
+    parameter integer N     = 32,
+    parameter string  MODEL = "Strucutural",
+    parameter string  TOP   = "RippleCarry"
 );
     import uvm_pkg::*;
     import AddHDL_pkg::*;
@@ -28,7 +28,7 @@ module Add_tb
     //-------------------------------------------------------------------------
     // Module Instantiation
     //-------------------------------------------------------------------------
-    Add  #(N, MODEL, ALGORITHM) u_Add  (intf.a, intf.b, intf.carry_in,  intf.c, intf.carry_out);
+    Add  #(N, MODEL, TOP) u_Add  (intf.a, intf.b, intf.carry_in,  intf.c, intf.carry_out);
 
     //-------------------------------------------------------------------------
     // UVM Test Start

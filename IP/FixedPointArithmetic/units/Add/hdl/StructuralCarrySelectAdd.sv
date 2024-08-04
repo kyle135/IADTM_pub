@@ -5,7 +5,7 @@
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
-// Algorithm:   CarrySelectAdder
+// Algorithm:   CarrySelectAdd
 // Model:       Structural
 // Description:
 //-----------------------------------------------------------------------------

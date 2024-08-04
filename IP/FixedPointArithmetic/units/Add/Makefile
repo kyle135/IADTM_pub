@@ -20,8 +20,9 @@ include $(WORK_DIRECTORY)/inc/$(UNIT_NAME)Filelist.mk
 
 VERILOG_HDL_FILES       := $($(UC_UNIT_NAME)_VERILOG_HDL_FILES)
 VERILOG_HVL_FILES       := $($(UC_UNIT_NAME)_VERILOG_HVL_FILES)
-MODELS                  := $($(UC_UNIT_NAME)_MODELS)
+
 TOPS                    := $($(UC_UNIT_NAME)_TOPS)
+MODELS                  := $($(UC_UNIT_NAME)_MODELS)
 WIDTH                   := 32
 
 display:
@@ -80,19 +81,35 @@ optimize_simulation_model: compile_rtl_for_simulation
 command_line_simulation: optimize_simulation_model
 	$(foreach top, $(TOPS), \
 		$(foreach model, $(MODELS), \
-			$(foreach algorithm, $(ALGORITHMS), \
-				$(VSIM) \
-					-work $(UNIT_NAME)_work \
-					+UVM_VERBOSITY=UVM_LOW \
-					-gDUT="$(top)" \
-					-gMODEL="$(model)" \
-					-gALGORITHM="$(algorithm)" \
-					-gN=$(WIDTH) \
-					-c \
-					-title "$(UNIT_NAME)$(model)$(top)$(algorithm)x$(WIDTH)_" \
-					-do "quietly set StdArithNoWarnings 1; log -recursive /* -optcells; run -all;" \
-					$(UNIT_NAME)_tb \
-					> $(UNIT_NAME)$(model)$(top)$(algorithm)x$(WIDTH)_vsim.log; \
-			) \
+			$(VSIM) \
+				-work $(UNIT_NAME)_work \
+				+UVM_VERBOSITY=UVM_LOW \
+				-gTOP="$(top)" \
+				-gMODEL="$(model)" \
+				-gN=$(WIDTH) \
+				-c \
+				-title "$(UNIT_NAME)$(model)$(top)x$(WIDTH)" \
+				-do "quietly set StdArithNoWarnings 1; log -recursive /* -optcells; run -all;" \
+				$(UNIT_NAME)_tb \
+				> $(UNIT_NAME)$(model)$(top)x$(WIDTH)_vsim.log; \
 		) \
 	)
+
+#------------------------------------------------------------------------------
+# 
+#------------------------------------------------------------------------------
+gui_simulation: optimize_simulation_model
+	$(VSIM) \
+		-work $(UNIT_NAME)_work \
+		+UVM_TESTNAME=AddTest \
+		+UVM_VERBOSITY=UVM_MEDIUM \
+		-gDUT=$(UNIT_NAME) \
+		-gTOP=$(TOP) \
+		-gMODEL=$(MODEL) \
+		-gN=$(WIDTH) \
+		-title "$(UNIT_NAME)" \
+		-do "log -r /*; run -all;" \
+		-voptargs=+acc \
+		-t ns \
+		$(UNIT_NAME)_tb \
+		> $(UNIT_NAME)_vsim.log;

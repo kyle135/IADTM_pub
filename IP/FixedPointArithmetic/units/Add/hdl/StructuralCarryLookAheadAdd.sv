@@ -50,13 +50,13 @@ module StructuralCarryLookAheadAdd
     //-------------------------------------------------------------------------        
     genvar i;
     generate for (i = 0; i < N; i = i + 1) begin : STRUCTURAL_GENERATION
-        StructuralReducedFullAdder 
+        StructuralReducedFullAdd 
         #(  //--------------//-------------------------------------------------
             // Parameters // Descriptions
             //--------------//-------------------------------------------------
             .N   ( 1     )  // Datapath width in bits.
         )
-        u_StructuralReducedFullAdder_carry
+        u_StructuralReducedFullAdd_carry
         (   //--------------//-------------------------------------------------
             // Inputs     // Direction, Size and Descriptions
             //--------------//-------------------------------------------------

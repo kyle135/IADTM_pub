@@ -70,12 +70,13 @@ export ADD_VERILOG_HDL_FILES      := \
     $(ADD_HDL_DIRECTORY)/StructuralHalfAdd.sv \
     $(ADD_HDL_DIRECTORY)/StructuralPrefixAdd.sv \
     $(ADD_HDL_DIRECTORY)/StructuralReducedFullAdd.sv \
-    $(ADD_HDL_DIRECTORY)/StructuralRippleCarryAdd.sv
+    $(ADD_HDL_DIRECTORY)/StructuralRippleCarryAdd.sv \
+    $(ADD_HDL_DIRECTORY)/Add.sv
 
 #----------------------------------------------------------------------------------------
 # Specify Verilog Simulation Files
 #----------------------------------------------------------------------------------------
 export ADD_VERILOG_HVL_FILES      := \
-	$(ADD_HDL_DIRECTORY)/Interface/src/AddInterface.sv \
-	$(ADD_HDL_DIRECTORY)/AddHDL_pkg.sv \
-	$(ADD_HDL_DIRECTORY)/Add_tb.sv
+	$(ADD_HVL_DIRECTORY)/Interface/src/AddInterface.sv \
+	$(ADD_HVL_DIRECTORY)/AddHDL_pkg.sv \
+	$(ADD_HVL_DIRECTORY)/Add_tb.sv

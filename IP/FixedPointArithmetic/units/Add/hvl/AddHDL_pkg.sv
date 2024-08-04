@@ -14,7 +14,7 @@ package AddHDL_pkg;
 	`include "hvl/Monitor/src/AddMonitor.svh"
 	`include "hvl/Driver/src/AddDriver.svh"
 	`include "hvl/Agent/src/AddAgent.svh"
-	`include "hvl/ScoreBoard/src/AddScoreboard.svh"
+	`include "hvl/ScoreBoard/src/AddScoreBoard.svh"
     `include "hvl/Environment/src/AddEnvironment.svh"
 	`include "hvl/Test/src/AddTest.svh"
 
