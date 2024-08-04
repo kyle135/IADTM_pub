@@ -11,19 +11,19 @@
 //
 //-----------------------------------------------------------------------------
 `default_nettype none
-module BehavioraReducedFullAdd
-(   //--------------------------//---------------------------------------------
-    // Inputs                   // Descriptions
-    //--------------------------//---------------------------------------------
-    input  wire [N-1:0] a,      // Operand A
-    input  wire [N-1:0] b,      // Operand B
-    input  wire         ci,     // Carry in
-    //--------------------------//---------------------------------------------
-    // Outputs                  // Descriptions
-    //--------------------------//---------------------------------------------
-    output reg  [N-1:0] c,      // Result
-    output reg          cp,     // Carry Propagate
-    output reg          cg      // Carry Generate
+module BehavioralReducedFullAdd
+(   //------------------//-----------------------------------------------------
+    // Inputs           // Descriptions
+    //------------------//-----------------------------------------------------
+    input  wire a,      // Operand A
+    input  wire b,      // Operand B
+    input  wire ci,     // Carry in
+    //------------------//-----------------------------------------------------
+    // Outputs          // Descriptions
+    //------------------//-----------------------------------------------------
+    output reg  c,      // Result
+    output reg  cp,     // Carry Propagate
+    output reg  cg      // Carry Generate
 );
 
     //-------------------------------------------------------------------------
@@ -31,9 +31,9 @@ module BehavioraReducedFullAdd
     //-------------------------------------------------------------------------
     reg not_cg;
     reg pre;
-    reg pre_and_cin;
-    reg pre_or_cin;
-    reg not_pre_and_cin;
+    reg pre_and_ci;
+    reg pre_or_ci;
+    reg not_pre_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
@@ -43,10 +43,10 @@ module BehavioraReducedFullAdd
     always@* not_cg          = ~cg;
     always@* pre             = not_cg & cp;
 
-    always@* pre_and_cin     = pre & cin;
-    always@* pre_or_cin      = pre | cin;
-    always@* not_pre_and_cin = ~pre_and_cin;
-    always@* c               = not_pre_and_cin & pre_or_cin;
+    always@* pre_and_ci     = pre & ci;
+    always@* pre_or_ci      = pre | ci;
+    always@* not_pre_and_ci = ~pre_and_ci;
+    always@* c               = not_pre_and_ci & pre_or_ci;
     //-------------------------------------------------------------------------
     // Synchronous Logic
     //-------------------------------------------------------------------------

@@ -31,7 +31,11 @@ module StructuralCarrySkipAdd
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-
+    wire [N-1:0] cx;    
+    wire [N-1:0] a_xor_b;
+    wire [N-1:0] a_or_b;
+    wire [N-1:0] a_and_b;
+    wire [N-1:0] a_or_b_and_ci;
     
     //-------------------------------------------------------------------------
     // Module Instantiation
@@ -41,15 +45,15 @@ module StructuralCarrySkipAdd
         // Summation Logic
         xor u_a_xor_b(a_xor_b[i], a[i], b[i]);
         if (i == 0) xor u_a_xor_b_xor_ci(c[i], a_xor_b[i], ci); 
-        else        xor u_a_xor_b_xor_ci(c[i], a_xor_b[i], carry[i-1]);
+        else        xor u_a_xor_b_xor_ci(c[i], a_xor_b[i], cx[i-1]);
             // Carry Logic
         and u_a_and_b(a_and_b[i], a[i], b[i]);
         or  u_a_or_b(a_or_b[i], a[i], b[i]);
         if (i == 0) and u_a_or_b_and_ci(a_or_b_and_ci[i], a_or_b[i], ci);
-        else        and u_a_or_b_and_ci(a_or_b_and_ci[i], a_or_b[i], carry[i-1]);
+        else        and u_a_or_b_and_ci(a_or_b_and_ci[i], a_or_b[i], cx[i-1]);
                     
-        if (i == N-1) or  u_a_or_b_and_ci_or_a_and_b(co, a_or_b_and_ci[i], carry[i-1]);
-        else          or  u_a_or_b_and_ci_or_a_and_b(carry[i],  a_or_b_and_ci[i], carry[i-1]);
+        if (i == N-1) or  u_a_or_b_and_ci_or_a_and_b(co, a_or_b_and_ci[i], cx[i-1]);
+        else          or  u_a_or_b_and_ci_or_a_and_b(cx[i],  a_or_b_and_ci[i], cx[i-1]);
     end : STRUCTURAL_GENERATION
     endgenerate
     

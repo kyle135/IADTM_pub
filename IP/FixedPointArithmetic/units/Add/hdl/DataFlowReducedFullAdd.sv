@@ -31,22 +31,22 @@ module DataFlowReducedFullAdd
     //-------------------------------------------------------------------------
     wire not_cg;
     wire pre;
-    wire pre_and_cin;
-    wire pre_or_cin;
-    wire not_pre_and_cin;
+    wire pre_and_ci;
+    wire pre_or_ci;
+    wire not_pre_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    assign cg              = a & b;
-    assign cp              = a | b;
-    assign not_cg          = ~cg;
-    assign pre             = not_cg & cp;
+    assign cg             = a & b;
+    assign cp             = a | b;
+    assign not_cg         = ~cg;
+    assign pre            = not_cg & cp;
 
-    assign pre_and_cin     = pre & cin;
-    assign pre_or_cin      = pre | cin;
-    assign not_pre_and_cin = ~pre_and_cin;
-    assign c               = not_pre_and_cin & pre_or_cin;
+    assign pre_and_ci     = pre & ci;
+    assign pre_or_ci      = pre | ci;
+    assign not_pre_and_ci = ~pre_and_ci;
+    assign c              = not_pre_and_ci & pre_or_ci;
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

@@ -50,5 +50,5 @@ module StructuralCarrySelectAdd
     end : STRUCTURAL_GENERATION
     endgenerate
     
-endmodule : StructuralCaStructuralCarrySelectAddrrySkipAdder
+endmodule : StructuralCarrySelectAdd
 `default_nettype wire

@@ -62,7 +62,7 @@ module StructuralCarryLookAheadAdd
             //--------------//-------------------------------------------------
             .a   ( a[i]  ), // [I][1] Operand A
             .b   ( b[i]  ), // [I][1] Operand B
-            .cin ( cx[i] ), // [I][1] Carry In
+            .ci ( cx[i] ), // [I][1] Carry In
             //--------------//-------------------------------------------------
             // Outputs    // Direction, Size and Descriptions
             //--------------//-------------------------------------------------

@@ -56,5 +56,5 @@ module StructuralReducedFullAdd
     not u1_not_cg           (not_pre_and_cin, pre_and_cin                );
     and u1_not_cg_and_a_or_b(c,               not_pre_and_cin, pre_or_cin);
 
-endmodule : StructuralReducedFullAdder
+endmodule : StructuralReducedFullAdd
 `default_nettype wire

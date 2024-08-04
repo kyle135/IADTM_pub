@@ -36,8 +36,8 @@ module DataFlowRippleCarryAdd
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    assign c = a ^ b ^ {cx[N-2:0], cx_in};
-    assign cx = {cx[N-2:0], cx_in} & (a | b) | (a & b);
+    assign c = a ^ b ^ {cx[N-2:0], ci};
+    assign cx = {cx[N-2:0], ci} & (a | b) | (a & b);
     assign co = cx[N-1];
 
     //-------------------------------------------------------------------------

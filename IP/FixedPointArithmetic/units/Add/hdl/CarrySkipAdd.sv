@@ -32,66 +32,66 @@ module CarrySkipAdd
     generate
         if (MODEL == "Behavioral") begin : BEHAVIORAL_INTANSTIATION
             BehavioralCarrySkipAdd
-            #(  //---------------------//--------------------------------------
-                // Parameters          // Descriptions
-                //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
-            )                          //
-            u_BehavioralCarrySkipAdd   //
-            (   //---------------------//--------------------------------------
-                // Inputs              // Direction, Size & Descriptions
-                //---------------------//---------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
-                .cin  ( cin         ), // [I][1] Carry In
-                //---------------------//--------------------------------------
-                // Outputs             // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
-                .cout ( cout        )  // [O][1] Result Carry
-            );                         //
+            #(  //--------------//---------------------------------------------
+                // Parameters   // Descriptions
+                //--------------//--------------------------------------------
+                .N  ( N      )  // Data-path width in bits
+            )                   //
+            u_BehavioralCarrySkipAdd
+            (   //--------------//---------------------------------------------
+                // Inputs       // Direction, Size & Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a      ), // [I][N] Operand A
+                .b  ( b      ), // [I][N] Operand B
+                .ci ( ci     ), // [I][1] Carry In
+                //--------------//---------------------------------------------
+                // Outputs      // Direction, Size & Descriptions
+                //--------------//---------------------------------------------
+                .c  ( c      ), // [O][N] Result Sum
+                .co ( co     )  // [O][1] Result Carry
+            );                  //
         end : BEHAVIORAL_INTANSTIATION
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
             DataFlowCarrySkipAdd
-            #(  //---------------------//--------------------------------------
-                // Parameters          // Descriptions
-                //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
-            )                          //
-            u_DataFlowCarrySkipAdd     //
-            (   //---------------------//--------------------------------------
-                // Inputs              // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
-                .cin  ( cin         ), // [I][1] Carry In
-                //---------------------//--------------------------------------
-                // Outputs             // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
-                .cout ( cout        )  // [O][1] Result Carry
-            );                         //
+            #(  //--------------//---------------------------------------------
+                // Parameters   // Descriptions
+                //--------------//---------------------------------------------
+                .N  ( N      )  // Data-path width in bits
+            )                   //
+            u_DataFlowCarrySkipAdd
+            (   //--------------//---------------------------------------------
+                // Inputs       // Direction, Size & Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a      ), // [I][N] Operand A
+                .b  ( b      ), // [I][N] Operand B
+                .ci ( ci     ), // [I][1] Carry In
+                //--------------//---------------------------------------------
+                // Outputs      // Direction, Size & Descriptions
+                //--------------//---------------------------------------------
+                .c  ( c      ), // [O][N] Result Sum
+                .co ( co     )  // [O][1] Result Carry
+            );                  //
         end : DATAFLOW_INTANSTIATION
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
             StructuralCarrySkipAdd
-            #(  //---------------------//--------------------------------------
-                // Parameters          // Descriptions
-                //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
-            )                          //
-            u_StructuralCarrySkipAdd   //
-            (   //---------------------//--------------------------------------
-                // Inputs              // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
-                .cin  ( cin         ), // [I][1] Carry In
-                //---------------------//--------------------------------------
-                // Outputs             // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
-                .cout ( cout        )  // [O][1] Result Carry
-            );                         //
+            #(  //--------------//---------------------------------------------
+                // Parameters   // Descriptions
+                //--------------//---------------------------------------------
+                .N  ( N      )  // Data-path width in bits
+            )                   //
+            u_StructuralCarrySkipAdd
+            (   //--------------//---------------------------------------------
+                // Inputs       // Direction, Size & Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a      ), // [I][N] Operand A
+                .b  ( b      ), // [I][N] Operand B
+                .ci ( ci     ), // [I][1] Carry In
+                //--------------//---------------------------------------------
+                // Outputs      // Direction, Size & Descriptions
+                //--------------//---------------------------------------------
+                .c  ( c      ), // [O][N] Result Sum
+                .co ( co     )  // [O][1] Result Carry
+            );                  //
         end : STRUCTURAL_INSTANTIATION
     endgenerate
 

@@ -10,7 +10,7 @@
 // Description: 
 //-----------------------------------------------------------------------------
 `default_nettype none
-module BehavioralCarryLookAheadAdd
+module BehavioralBlockCarryLookAheadAdd
 #(  //--------------------------//---------------------------------------------
     // Parameters               // Descriptions
     //--------------------------//---------------------------------------------
@@ -44,5 +44,5 @@ module BehavioralCarryLookAheadAdd
     // Module Instantiation
     //-------------------------------------------------------------------------
 
-endmodule : BehavioralCarryLookAheadAdd
+endmodule : BehavioralBlockCarryLookAheadAdd
 `default_nettype wire

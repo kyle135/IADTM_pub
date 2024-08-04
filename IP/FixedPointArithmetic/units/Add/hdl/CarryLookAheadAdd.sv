@@ -59,12 +59,12 @@ module CarryLookAheadAdd
                 //---------------------//---------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
-                .cin  ( cin         ), // [I][1] Carry In
+                .ci  ( ci         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
-                .cout ( cout        )  // [O][1] Result Carry
+                .co ( co        )  // [O][1] Result Carry
             );                         //
         end : BEHAVIORAL_INTANSTIATION
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
@@ -80,12 +80,12 @@ module CarryLookAheadAdd
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
-                .cin  ( cin         ), // [I][1] Carry In
+                .ci  ( ci         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
-                .cout ( cout        )  // [O][1] Result Carry
+                .co ( co        )  // [O][1] Result Carry
             );                         //
         end : DATAFLOW_INTANSTIATION
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
@@ -101,12 +101,12 @@ module CarryLookAheadAdd
                 //---------------------//--------------------------------------
                 .a    ( a           ), // [I][N] Operand A
                 .b    ( b           ), // [I][N] Operand B
-                .cin  ( cin         ), // [I][1] Carry In
+                .ci  ( ci         ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
                 .c    ( c           ), // [O][N] Result Sum
-                .cout ( cout        )  // [O][1] Result Carry
+                .co ( co        )  // [O][1] Result Carry
             );                         //
         end : STRUCTURAL_INSTANTIATION
     endgenerate
