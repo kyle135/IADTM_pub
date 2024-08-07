@@ -12,40 +12,38 @@
 //-----------------------------------------------------------------------------
 `default_nettype none
 module StructuralCarryLookAheadGenerator
-#(  //-----------------------//------------------------------------------------
-    // Parameter(s)          // Description(s)
-    //-----------------------//------------------------------------------------
-    parameter integer N = 4  //
-)  (//-----------------------//------------------------------------------------
-    // Input(s)              // Description(s)
-    //-----------------------//------------------------------------------------
-    input  wire [N-1:0] a,   // Operand A
-    input  wire [N-1:0] b,   // Operand B
-    input  wire [N-1:0] cp,  // Carry Propagate
-    input  wire [N-1:0] cg,  // Carry Generate
-    input  wire         ci,  // Carry In
-    //-----------------------//------------------------------------------------
-    // Output(s)             // Description(s)
-    //-----------------------//------------------------------------------------
-    output wire [N-1:0] co   // Carry Out
+#(  //----------------------//-------------------------------------------------
+    // Parameter(s)         // Description(s)
+    //----------------------//-------------------------------------------------
+    parameter integer N = 4 // Datapath width in bits.
+)  (//----------------------//-------------------------------------------------
+    // Input(s)             // Description(s)
+    //----------------------//-------------------------------------------------
+    input  wire a,          // Operand A
+    input  wire b,          // Operand B
+    input  wire cp,         // Carry Propagate
+    input  wire cg,         // Carry Generate
+    input  wire ci,         // Carry In
+    //----------------------//-------------------------------------------------
+    // Output(s)            // Description(s)
+    //----------------------//-------------------------------------------------
+    output wire co          // Carry Out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    wire [N  :0] cx;
-    wire [N-1:0] cp_and_cx;
+    wire cx;
+    wire cp_and_cx;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    assign cx[0] = ci;
-    assign co    = cx[N-1:1];
-
+    
     genvar i;
     generate for (i = 0; i < N; i = i + 1) begin : STRUCTURAL_GENERATION
-        and u_cp_and_cx(cp_and_cx[i+1], cp[i], cx[i]);
-        or  u_cg_or_cp_and_cx(cx[i+1], cg[i], cp_and_cx[i]);        
+        and u_cp_and_cx(cp_and_cx, cp, ci);
+        or  u_cg_or_cp_and_cx(co, cg, cp_and_cx);        
     end : STRUCTURAL_GENERATION
     endgenerate
 

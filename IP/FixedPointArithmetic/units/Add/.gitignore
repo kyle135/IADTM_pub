@@ -9,6 +9,7 @@ projlib.cfg
 *.cfg
 *.mgf
 *.lib
+*.wlf
 *.duser
 *.set
 Add_work/

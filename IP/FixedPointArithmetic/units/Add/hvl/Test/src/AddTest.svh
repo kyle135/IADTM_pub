@@ -37,7 +37,9 @@ class AddTest extends uvm_test;
             rseq = AddSequence::type_id::create("rseq", this);
             rseq.start(env.agt.sqr);
 
+            #30ns;
             phase.drop_objection(.obj(this));
+            
         end
     endtask : run_phase
 

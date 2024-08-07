@@ -74,6 +74,7 @@ compile_rtl_for_simulation: compile_c_model_for_simulation
 optimize_simulation_model: compile_rtl_for_simulation
 	$(VOPT) \
 		$(UNIT_NAME)_tb \
+		-O1 \
 		-o opt_$(UNIT_NAME)_tb > $(UNIT_NAME)_vopt.log
 #------------------------------------------------------------------------------
 # Simulate Design (Command Line)
@@ -91,10 +92,9 @@ command_line_simulation: optimize_simulation_model
 				-title "$(UNIT_NAME)$(model)$(top)x$(WIDTH)" \
 				-do "quietly set StdArithNoWarnings 1; log -recursive /* -optcells; run -all;" \
 				$(UNIT_NAME)_tb \
-				> $(UNIT_NAME)$(model)$(top)x$(WIDTH)_vsim.log; \
+				> $(model)$(top)x$(WIDTH)_vsim.log; \
 		) \
 	)
-
 #------------------------------------------------------------------------------
 # 
 #------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ export ADD_HDL_DIRECTORY	     := $(abspath $(ADD_DIRECTORY)/hdl)
 export ADD_HVL_DIRECTORY	     := $(abspath $(ADD_DIRECTORY)/hvl)
 
 export ADD_MODELS                := \
-    Behvioral \
+    Behavioral \
     DataFlow \
     Structural
 

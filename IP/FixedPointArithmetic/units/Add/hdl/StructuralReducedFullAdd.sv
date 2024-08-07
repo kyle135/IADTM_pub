@@ -17,11 +17,11 @@ module StructuralReducedFullAdd
     //------------------//-----------------------------------------------------
     input  wire a,      // Operand A
     input  wire b,      // Operand B
-    input  wire cin,    // Carry In
+    input  wire ci,     // Carry In
     //------------------//-----------------------------------------------------
     // Outputs          // Descriptions
     //------------------//-----------------------------------------------------
-    output wire c,      // Sum
+    output wire c,      // Result C
     output wire cp,     // Carry Propagate
     output wire cg      // Carry Generate
 );
@@ -31,9 +31,9 @@ module StructuralReducedFullAdd
     //-------------------------------------------------------------------------
     wire not_cg;
     wire pre;
-    wire pre_and_cin;
-    wire pre_or_cin;
-    wire not_pre_and_cin;
+    wire pre_and_ci;
+    wire pre_or_ci;
+    wire not_pre_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
@@ -46,15 +46,15 @@ module StructuralReducedFullAdd
     //-------------------------------------------------------------------------
     // Module Instantiation
     //-------------------------------------------------------------------------
-    and u0_and              (cg,              a,               b         );
-    or  u0_a_or_b           (cp,              a,               b         );
-    not u0_not_cg           (not_cg,          cg                         );
-    and u0_not_cg_and_a_or_b(pre,             not_cg,          cp        );
+    and u0_and              (cg,             a,              b        );
+    or  u0_a_or_b           (cp,             a,              b        );
+    not u0_not_cg           (not_cg,         cg                       );
+    and u0_not_cg_and_a_or_b(pre,            not_cg,         cp       );
 
-    and u1_and              (pre_and_cin,     pre,             cin       );
-    or  u1_a_or_b           (pre_or_cin,      pre,             cin       );
-    not u1_not_cg           (not_pre_and_cin, pre_and_cin                );
-    and u1_not_cg_and_a_or_b(c,               not_pre_and_cin, pre_or_cin);
+    and u1_and              (pre_and_ci,     pre,            ci       );
+    or  u1_a_or_b           (pre_or_ci,      pre,            ci       );
+    not u1_not_cg           (not_pre_and_ci, pre_and_ci               );
+    and u1_not_cg_and_a_or_b(c,              not_pre_and_ci, pre_or_ci);
 
 endmodule : StructuralReducedFullAdd
 `default_nettype wire

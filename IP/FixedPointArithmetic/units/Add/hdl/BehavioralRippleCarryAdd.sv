@@ -19,27 +19,29 @@ module BehavioralRippleCarryAdd
 )  (//--------------------------//---------------------------------------------
     // Inputs                   // Descriptions
     //--------------------------//---------------------------------------------
-    input  wire [N-1:0] a,      // Operand A
-    input  wire [N-1:0] b,      // Operand B
-    input  wire         ci,     // Carry In
+    input  wire  [N-1:0] a,     // Operand A
+    input  wire  [N-1:0] b,     // Operand B
+    input  wire          ci,    // Carry In
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output reg  [N-1:0] c,      // Result C
-    output reg          co      // Carry Out
+    output logic [N-1:0] c,      // Result C
+    output logic         co      // Carry Out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    reg [N:0] cx;             // Internal carry chain
+    logic [N-1:0] cx;             // Internal carry chain
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    always@* c  = a ^ b ^ {cx[N-1:0], ci};
-    always@* cx = ({cx[N-1:0], ci} & (a | b)) | (a & b);
-    always@* co = cx[N];
+    always @* begin : BEHAVIORAL_BLOCK
+        c  = a ^ b ^ {cx[N-2:0], ci};
+        cx = ({cx[N-2:0], ci} & (a | b)) | (a & b);
+        co = cx[N-1];
+    end : BEHAVIORAL_BLOCK
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

@@ -8,6 +8,8 @@
 // Algorithm:   CarryLookAheadAdd
 // Model:       Structural
 // Description: 
+// make optimize_simulation_model && \
+// /tools/QuestaSim2021.2_1/questasim/linux_x86_64/vsim -classdebug -work Add_work +UVM_VERBOSITY=UVM_LOW -gTOP="CarryLookAheadAdd"  -gMODEL="Structural" -gN=32  -do "quietly set StdArithNoWarnings 1; log -recursive /* -optcells; run -all;" Add_tb 
 //-----------------------------------------------------------------------------
 `default_nettype none
 module StructuralCarryLookAheadAdd
@@ -20,7 +22,7 @@ module StructuralCarryLookAheadAdd
     //--------------------------//---------------------------------------------
     input  wire [N-1:0] a,      // Operand A
     input  wire [N-1:0] b,      // Operand B
-    input  wire [N-1:0] ci,     // Carry In
+    input  wire         ci,     // Carry In
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
@@ -33,13 +35,12 @@ module StructuralCarryLookAheadAdd
     //-------------------------------------------------------------------------
     wire [N-1:0] cg;
     wire [N-1:0] cp;
-    wire [N  :0] cx;
+    wire [N-1:0] ck;
     
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    assign cx[0] = ci;
-    assign co    = cx[N-1];
+    assign co    = ck[N-1];
 
     //-------------------------------------------------------------------------
     // Synchronous Logic
@@ -50,48 +51,87 @@ module StructuralCarryLookAheadAdd
     //-------------------------------------------------------------------------        
     genvar i;
     generate for (i = 0; i < N; i = i + 1) begin : STRUCTURAL_GENERATION
-        StructuralReducedFullAdd 
-        #(  //--------------//-------------------------------------------------
-            // Parameters // Descriptions
-            //--------------//-------------------------------------------------
-            .N   ( 1     )  // Datapath width in bits.
-        )
-        u_StructuralReducedFullAdd_carry
-        (   //--------------//-------------------------------------------------
-            // Inputs     // Direction, Size and Descriptions
-            //--------------//-------------------------------------------------
-            .a   ( a[i]  ), // [I][1] Operand A
-            .b   ( b[i]  ), // [I][1] Operand B
-            .ci ( cx[i] ), // [I][1] Carry In
-            //--------------//-------------------------------------------------
-            // Outputs    // Direction, Size and Descriptions
-            //--------------//-------------------------------------------------
-            .c   ( c[i]  ), // [O][1] Result
-            .cg  ( cg[i] ), // [O][1] Carry Generate
-            .cp  ( cp[i] )  // [O][1] Carry Propagate
-        );
+        // c[i] = (a[i]·b[i]) + ((a[i]^b[i])·ci[i-1])
+        //      =    cg[i]    +    (cp[i]·ci[i-1])
+        //
+        // c[0] = cg[0] | (cp[0] & ci   )
+        // c[1] = cg[1] | (cp[1] & c[0])
+        // c[2] = cg[2] | (cp[2] & c[1])
+        // c[3] = cg[3] | (cp[3] & c[2])
+        if (i == 0) begin : FIRST_BIT_GENERATION
+            StructuralReducedFullAdd u_StructuralReducedFullAdd
+            (   //--------------//---------------------------------------------
+                // Inputs       // Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a[i]   ), // [I][1] Operand A
+                .b  ( b[i]   ), // [I][1] Operand B
+                .ci ( ci     ), // [I][1] Carry In
+                //--------------//---------------------------------------------
+                // Outputs      // Descriptions
+                //--------------//---------------------------------------------
+                .c  ( c[i]   ), // [O][1] Result C
+                .cp ( cp[i]  ), // [O][1] Carry Propagate
+                .cg ( cg[i]  )  // [O][1] Carry Generate
+            );
 
-        StructuralCarryLookAheadGenerator
-        #(  //--------------//----------------------------------------------
-            // Parameters // Descriptions
-            //--------------//----------------------------------------------
-            .N   ( 1     )  // Datapath width in bits.
-        )
-        u_StructuralCarryLookAheadGenerator
-        (   //--------------//----------------------------------------------
-            // Inputs     // Direction, Size & Descriptions
-            //--------------//----------------------------------------------
-            .a   ( a[i]  ), // [I][1] Operand A
-            .b   ( b[i]  ), // [I][1] Operand B
-            .cp  ( cp[i] ), // [I][1] Carry Propagate
-            .cg  ( cg[i] ), // [I][1] Carry Generate
-            .ci  ( cx[i] ), // [I][1] Carry In
-            //--------------//----------------------------------------------
-            // Outputs    // Direction, Size & Descriptions
-            //--------------//----------------------------------------------
-            .co ( cx[i+1])  // [O][1] Carry Out
-        );
+            StructuralCarryLookAheadGenerator
+            #(  //--------------//---------------------------------------------
+                // Parameters   // Descriptions
+                //--------------//---------------------------------------------
+                .N  ( 1      )  // Datapath width in bits.
+            )
+            u_StructuralCarryLookAheadGenerator
+            (   //--------------//---------------------------------------------
+                // Inputs       // Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a[i]   ), // [I][1] Operand A
+                .b  ( b[i]   ), // [I][1] Operand B
+                .cp ( cp[i]  ), // [I][1] Carry Propagate
+                .cg ( cg[i]  ), // [I][1] Carry Generate
+                .ci ( ci     ), // [I][1] Carry In
+                //--------------//---------------------------------------------
+                // Outputs      // Descriptions
+                //--------------//---------------------------------------------
+                .co ( ck[i]  )  // [O][1] Carry Out
+            );
+        end : FIRST_BIT_GENERATION
+        else begin : REMAINING_BIT_GENERATION
+            StructuralReducedFullAdd u_StructuralReducedFullAdd
+            (   //--------------//---------------------------------------------
+                // Inputs       // Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a[i]   ), // [I][1] Operand A
+                .b  ( b[i]   ), // [I][1] Operand B
+                .ci ( ck[i-1]), // [I][1] Carry In
+                //--------------//---------------------------------------------
+                // Outputs      // Descriptions
+                //--------------//---------------------------------------------
+                .c  ( c[i]   ), // [O][1] Result C
+                .cp ( cp[i]  ), // [O][1] Carry Propagate
+                .cg ( cg[i]  )  // [O][1] Carry Generate
+            );        
 
+            StructuralCarryLookAheadGenerator 
+            #(  //--------------//---------------------------------------------
+                // Parameters   // Descriptions
+                //--------------//---------------------------------------------
+                .N  ( 1      )  // Datapath width in bits.
+            )
+            u_StructuralCarryLookAheadGenerator
+            (   //--------------//---------------------------------------------
+                // Inputs       // Descriptions
+                //--------------//---------------------------------------------
+                .a  ( a[i]   ), // [I][1] Operand A
+                .b  ( b[i]   ), // [I][1] Operand B
+                .cp ( cp[i]  ), // [I][1] Carry Propagate
+                .cg ( cg[i]  ), // [I][1] Carry Generate
+                .ci ( ck[i-1]), // [I][1] Carry In
+                //--------------//-------------------------------------------------
+                // Outputs    // Descriptions
+                //--------------//-------------------------------------------------
+                .co ( ck[i])    // Carry Out
+            );
+        end : REMAINING_BIT_GENERATION
     end : STRUCTURAL_GENERATION
     endgenerate
 

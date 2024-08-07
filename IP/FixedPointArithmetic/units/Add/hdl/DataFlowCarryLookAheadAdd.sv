@@ -15,32 +15,60 @@ module DataFlowCarryLookAheadAdd
 #(  //--------------------------------------//---------------------------------
     // Parameters                           // Descriptions
     //--------------------------------------//---------------------------------
-    parameter integer N     = 32,           //
-    parameter string  MODEL = "DataFlow"    //
+    parameter integer N     = 32            // Datapath width in bits
 )  (//--------------------------------------//---------------------------------
     // Inputs                               // Descriptions
     //--------------------------------------//---------------------------------
-    input  wire [N-1:0] a,                  // Operand A
-    input  wire [N-1:0] b,                  // Operand B
-    input  wire         ci,                 // Carry in
+    input  wire  [N-1:0] a,                 // Operand A
+    input  wire  [N-1:0] b,                 // Operand B
+    input  wire          ci,                // Carry in
     //--------------------------------------//---------------------------------
     // Outputs                              // Descriptions
     //--------------------------------------//---------------------------------
-    output wire [N-1:0] c,                  // Result
-    output wire         co                  // Carry out
+    output logic [N-1:0] c,                 // Result C
+    output logic         co                 // Carry out
 );
     
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    wire [N-1:0] cx;
+    logic [N-1:0] cg;    
+    logic [N-1:0] cp;
+    logic [N-1:0] ck;
+    logic [N-1:0] cgn;
+    logic [N-1:0] cgn_and_cp;
+    logic [N-1:0] ck_and_cgn;
+    logic [N-1:0] ck_or_cgn;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    assign c = a ^ b ^ {cx[N-2:0], ci};
-    assign cx = {cx[N-2:0], ci} & (a | b) | (a & b);
-    assign co = cx[N-1];
+    //                          cg[i]
+    //               .-----.     |   .---.
+    // a[i] --.------:  &  :-----'---| ! |----.    .-----.
+    // b[i] --|--.---:     |         '---'    `----:  &  :---- cgn_and_cp[i]
+    //        |  |   '-----'                  .----:     |
+    //        |  |   .-----.                  |    '-----'
+    //        |  `---:  |  :-----.------------'
+    //        `------:     |     |
+    //               '-----'     |
+    //                          cp[i]
+    assign cp         = a | b;
+    assign cg         = a & b;
+    assign cgn        = ~cg;
+    assign cgn_and_cp = cgn & cp;
+
+    //               .-----.
+    // ck[i-1] ------:  &  :-----.
+    // cp[i-1] ------:     |     |    .-----.
+    //               '-----'     `----:  |  :------ ck[i]
+    // cg[i-1] -----------------------:     |
+    //                                '-----'
+    assign {co, ck}   = ({cp, 1'b0} & {ck, ci}) | {cg, 1'b0};
+    assign ck_and_cgn = ck & cgn_and_cp;
+    assign ck_or_cgn  = ck | cgn_and_cp;
+    assign c          = ~ck_and_cgn & ck_or_cgn;
+
 
     //-------------------------------------------------------------------------
     // Synchronous Logic

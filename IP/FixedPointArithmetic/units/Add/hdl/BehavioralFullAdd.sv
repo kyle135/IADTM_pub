@@ -24,17 +24,17 @@ module BehavioralFullAdd
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output reg  [N-1:0] c,      // Result
-    output reg          co      // Carry out
+    output logic [N-1:0] c,     // Result
+    output logic         co     // Carry out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    reg a_xor_b;
-    reg a_or_b;
-    reg a_and_b;
-    reg a_or_b_and_ci;
+    logic a_xor_b;
+    logic a_or_b;
+    logic a_and_b;
+    logic a_or_b_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic

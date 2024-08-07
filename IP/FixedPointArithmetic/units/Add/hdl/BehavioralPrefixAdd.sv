@@ -18,14 +18,14 @@ module BehavioralPrefixAdd
 )  (//--------------------------//-----------------------------------------
     // Inputs                   // Descriptions
     //--------------------------//-----------------------------------------
-    input  wire [N-1:0] a,      // Operand A
-    input  wire [N-1:0] b,      // Operand B
-    input  wire         ci,     // Carry in
+    input  wire  [N-1:0] a,     // Operand A
+    input  wire  [N-1:0] b,     // Operand B
+    input  wire          ci,    // Carry in
     //--------------------------//-----------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//-----------------------------------------
-    output wire [N-1:0] c,      // Result
-    output wire         co      // Carry out
+    output logic [N-1:0] c,      // Result
+    output logic         co      // Carry out
 );
 
 //-------------------------------------------------------------------------

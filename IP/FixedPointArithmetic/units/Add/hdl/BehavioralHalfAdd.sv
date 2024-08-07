@@ -18,23 +18,23 @@ module BehavioralHalfAdd
 )  (//--------------------------//---------------------------------------------
     // Inputs                   // Descriptions
     //--------------------------//---------------------------------------------
-    input  wire [N-1:0] a,      // Operand A
-    input  wire [N-1:0] b,      // Operand B
-    input  wire         ci,     // Carry in
+    input  wire  [N-1:0] a,     // Operand A
+    input  wire  [N-1:0] b,     // Operand B
+    input  wire          ci,    // Carry in
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output reg  [N-1:0] c,      // Result
-    output reg          co      // Carry out
+    output logic [N-1:0] c,     // Result
+    output logic         co     // Carry out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    reg [N-1:0] not_b;
-    reg [N-1:0] not_a;
-    reg [N-1:0] not_a_and_b;
-    reg [N-1:0] a_and_not_b;
+    logic [N-1:0] not_b;
+    logic [N-1:0] not_a;
+    logic [N-1:0] not_a_and_b;
+    logic [N-1:0] a_and_not_b;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic

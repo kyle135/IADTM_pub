@@ -24,18 +24,35 @@ module BehavioralBlockCarryLookAheadAdd
     //--------------------------//---------------------------------------------
     // Outputs                  // Descriptions
     //--------------------------//---------------------------------------------
-    output wire [N-1:0] c,      // Result
-    output wire         co      // Carry out
+    output logic [N-1:0] c,     // Result C
+    output logic         co     // Carry out
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
+    logic [N-1:0] cg;    
+    logic [N-1:0] cp;
+    logic [N-1:0] cx;
+    logic [N-1:0] cgn;
+    logic [N-1:0] cgn_and_cp;
+    logic [N-1:0] cx_and_cgn;
+    logic [N-1:0] cx_or_cgn;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-    
+    always_comb begin    
+        cp         = a | b;
+        cg         = a & b;
+        cgn        = ~cg;
+        cgn_and_cp = cgn & cp;
+        {co, cx}   = cg | (cp & {cx, ci});
+        cx_and_cgn = cx & cgn_and_cp;
+        cx_or_cgn  = cx | cgn_and_cp;
+        c          = ~cx_and_cgn & cx_or_cgn;
+    end
+
     //-------------------------------------------------------------------------
     // Synchronous Logic
     //-------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
 // Algorithm:   CarryLookAheadAdd
-// Modeling:    Behavioral, Dataflow, Structural
+// Modeling:    Behavioral, DataFlow, Structural
 // Description: 
 //
 //-----------------------------------------------------------------------------
@@ -51,20 +51,20 @@ module CarryLookAheadAdd
             #(  //---------------------//--------------------------------------
                 // Parameters          // Descriptions
                 //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
+                .N  ( N             )  // Data-path width in bits
             )                          //
             u_BehavioralCarryLookAheadAdd
             (   //---------------------//--------------------------------------
                 // Inputs              // Direction, Size & Descriptions
                 //---------------------//---------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
-                .ci  ( ci         ), // [I][1] Carry In
+                .a  ( a             ), // [I][N] Operand A
+                .b  ( b             ), // [I][N] Operand B
+                .ci ( ci            ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
-                .co ( co        )  // [O][1] Result Carry
+                .c  ( c             ), // [O][N] Result Sum
+                .co ( co            )  // [O][1] Result Carry
             );                         //
         end : BEHAVIORAL_INTANSTIATION
         else if (MODEL == "DataFlow") begin : DATAFLOW_INTANSTIATION
@@ -72,41 +72,41 @@ module CarryLookAheadAdd
             #(  //---------------------//--------------------------------------
                 // Parameters          // Descriptions
                 //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
+                .N  ( N             )  // Data-path width in bits
             )                          //
             u_DataFlowCarryLookAheadAdd
-            (   //---------------------//--------------------------------------
-                // Inputs              // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
-                .ci  ( ci         ), // [I][1] Carry In
-                //---------------------//--------------------------------------
-                // Outputs             // Direction, Size & Descriptions
-                //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
-                .co ( co        )  // [O][1] Result Carry
-            );                         //
+            (   //----------------------//-------------------------------------
+                // Inputs               // Direction, Size & Descriptions
+                //----------------------//-------------------------------------
+                .a  ( a              ), // [I][N] Operand A
+                .b  ( b              ), // [I][N] Operand B
+                .ci ( ci             ), // [I][1] Carry In
+                //----------------------//--------------------------------------
+                // Outputs              // Direction, Size & Descriptions
+                //----------------------//--------------------------------------
+                .c  ( c              ), // [O][N] Result Sum
+                .co ( co             )  // [O][1] Result Carry
+            );                          //
         end : DATAFLOW_INTANSTIATION
         else if (MODEL == "Structural") begin : STRUCTURAL_INSTANTIATION
             StructuralCarryLookAheadAdd
             #(  //---------------------//--------------------------------------
                 // Parameters          // Descriptions
                 //---------------------//--------------------------------------
-                .N    ( N           )  // Data-path width in bits
+                .N  ( N             )  // Data-path width in bits
             )                          //
             u_StructuralCarryLookAheadAdd
             (   //---------------------//--------------------------------------
                 // Inputs              // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .a    ( a           ), // [I][N] Operand A
-                .b    ( b           ), // [I][N] Operand B
-                .ci  ( ci         ), // [I][1] Carry In
+                .a  ( a             ), // [I][N] Operand A
+                .b  ( b             ), // [I][N] Operand B
+                .ci ( ci            ), // [I][1] Carry In
                 //---------------------//--------------------------------------
                 // Outputs             // Direction, Size & Descriptions
                 //---------------------//--------------------------------------
-                .c    ( c           ), // [O][N] Result Sum
-                .co ( co        )  // [O][1] Result Carry
+                .c  ( c             ), // [O][N] Result Sum
+                .co ( co            )  // [O][1] Result Carry
             );                         //
         end : STRUCTURAL_INSTANTIATION
     endgenerate

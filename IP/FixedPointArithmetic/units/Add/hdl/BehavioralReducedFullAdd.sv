@@ -15,25 +15,25 @@ module BehavioralReducedFullAdd
 (   //------------------//-----------------------------------------------------
     // Inputs           // Descriptions
     //------------------//-----------------------------------------------------
-    input  wire a,      // Operand A
-    input  wire b,      // Operand B
-    input  wire ci,     // Carry in
+    input  wire  a,     // Operand A
+    input  wire  b,     // Operand B
+    input  wire  ci,    // Carry in
     //------------------//-----------------------------------------------------
     // Outputs          // Descriptions
     //------------------//-----------------------------------------------------
-    output reg  c,      // Result
-    output reg  cp,     // Carry Propagate
-    output reg  cg      // Carry Generate
+    output logic c,     // Result
+    output logic cp,    // Carry Propagate
+    output logic cg     // Carry Generate
 );
 
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    reg not_cg;
-    reg pre;
-    reg pre_and_ci;
-    reg pre_or_ci;
-    reg not_pre_and_ci;
+    logic not_cg;
+    logic pre;
+    logic pre_and_ci;
+    logic pre_or_ci;
+    logic not_pre_and_ci;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic

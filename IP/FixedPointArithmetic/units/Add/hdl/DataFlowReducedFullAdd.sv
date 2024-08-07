@@ -21,7 +21,7 @@ module DataFlowReducedFullAdd
     //------------------//-----------------------------------------------------
     // Outputs          // Descriptions
     //------------------//-----------------------------------------------------
-    output wire c,      // Result
+    output wire c,      // Result C
     output wire cp,     // Carry Propagate
     output wire cg      // Carry Generate
 );
