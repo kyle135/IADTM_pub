@@ -2,12 +2,10 @@ Current Status
 -----------------------------------------------------------
 PS - StructuralRippleCarryAdd
 PS - StructuralCarryLookAheadAdd
-
-ER - BehvioralRippleCarryAdd    <-- Seems like a simulator issue. The code is identical to the DataFlow model.
-ER - BehvioralCarryLookAheadAdd
-
+ER - BehvioralRippleCarryAdd
+PS - BehvioralCarryLookAheadAdd
 PS - DataFlowRippleCarryAdd
-FL - DataFlowCarryLookAheadAdd  <-- Seems like a simulator issue. The code is identical to the DataFlow model.
+PS - DataFlowCarryLookAheadAdd
 
 ER - BehvioralCarrySaveAdd
 ER - BehvioralCarrySelectAdd

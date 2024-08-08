@@ -54,12 +54,7 @@ class AddSequence extends uvm_sequence#(AddSequenceItem);
 
         repeat(15) begin
             item = AddSequenceItem::type_id::create("item");
-
-            start_item(item);
-            if(!item.randomize())
-                `uvm_fatal("AddSequenceItem", "Randomization failure!!!")
-
-            finish_item(item);
+            `uvm_do_with(item, {ci == 0;});
         end
     endtask : body;
 

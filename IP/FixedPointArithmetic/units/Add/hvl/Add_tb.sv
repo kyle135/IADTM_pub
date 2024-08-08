@@ -28,7 +28,7 @@ module Add_tb
     //-------------------------------------------------------------------------
     // Module Instantiation
     //-------------------------------------------------------------------------
-    Add  #(N, MODEL, TOP) u_Add  (intf.a, intf.b, intf.carry_in,  intf.c, intf.carry_out);
+    Add  #(N, MODEL, TOP) u_Add  (intf.a, intf.b, intf.ci,  intf.c, intf.co);
 
     //-------------------------------------------------------------------------
     // UVM Test Start

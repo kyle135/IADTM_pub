@@ -46,7 +46,7 @@ class AddMonitor extends uvm_monitor;
             cfg.capture.wait_trigger ( );
      
             // Wait 1 unit time for the AND gate to propagate result.
-            #1 intf.capture_outputs ( item.c, item.carry_out );
+            #1 intf.capture_outputs ( item.c, item.co );
             `uvm_info ( "AddMonitor", item.sprint(), UVM_LOW );
             // Write into scoreboard
             out_ap.write ( item );

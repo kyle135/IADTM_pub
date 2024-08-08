@@ -12,16 +12,16 @@ class AddSequenceItem extends uvm_sequence_item;
     //-------------------------------------------------------------------------
     rand bit [N-1:0] a;
     rand bit [N-1:0] b;
-    rand bit         carry_in;
+    rand bit         ci;
     rand bit [N-1:0] c;
-    rand bit         carry_out;
+    rand bit         co;
 
     `uvm_object_utils_begin (AddSequenceItem)
         `uvm_field_int(a, UVM_ALL_ON);
         `uvm_field_int(b, UVM_ALL_ON);
-        `uvm_field_int(carry_in, UVM_ALL_ON);
+        `uvm_field_int(ci, UVM_ALL_ON);
         `uvm_field_int(c, UVM_ALL_ON);
-        `uvm_field_int(carry_out, UVM_ALL_ON);
+        `uvm_field_int(co, UVM_ALL_ON);
     `uvm_object_utils_end
 
     //-------------------------------------------------------------------------    

@@ -1,71 +1,73 @@
 //-----------------------------------------------------------------------------
-// Licensing:    It's All Digital To Me © 2018 by Kyle D. Gilsdorf is licensed 
-//               under Creative Commons Attribution 4.0 International.
-// Company:      It's All Digital To Me
-// Engineer:     Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// Licensing:   It's All Digital To Me (c) 2018 by Kyle D. Gilsdorf is licensed
+//              under Creative Commons Attribution 4.0 International.
+// Company:     It's All Digital To Me
+// Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
+// IP Name:     FixedPointArithmetic
+// Unit Name:   Add
+// Description: 
+//
 //-----------------------------------------------------------------------------
-module FixedPointAdd
-#(  //----------------------------------------------//-------------------------
-    // Parameters                                   // Description(s)
-    //----------------------------------------------//-------------------------
-    parameter int    N         = 32,                //
-    parameter string MODEL     = "Structural",      //
-    parameter string ALGORITHM = "RippleCarry"      //
-)  (//----------------------------------------------//-------------------------
-    // Inputs                                       // Description(s)
-    //----------------------------------------------//-------------------------
-    input  wire [N-1:0] a,                          //
-    input  wire [N-1:0] b,                          //
-    input  wire         carry_in,                   //
-    //----------------------------------------------//-------------------------
-    // Outputs                                      // Description(s)
-    //----------------------------------------------//-------------------------
-    output wire [N-1:0] c,                          //
-    output wire         carry_out                   //
+`default_nettype none
+module FixedPointAddSubtract
+#(  //------------------------------------------//-----------------------------
+    // Parameters                               // Descriptions
+    //------------------------------------------//-----------------------------
+    parameter int    N         = 32,            // Datapath width in bits.
+    parameter string MODEL     = "Structural",  // Modeling Technique
+    parameter string ALGORITHM = "RippleCarry"  // Algorithm to be used.
+)  (//------------------------------------------//-----------------------------
+    // Inputs                                   // Descriptions
+    //------------------------------------------//-----------------------------
+    input  wire         subtract,               // Control signal to enable subtract
+    input  wire [N-1:0] a,                      // Operand A
+    input  wire [N-1:0] b,                      // Operand B
+    //------------------------------------------//-----------------------------
+    // Outputs                                  // Descriptions
+    //------------------------------------------//-----------------------------
+    output wire [N-1:0] c,                      // Result C
+    output wire         co                      // Carry Out
 );
         
     //-------------------------------------------------------------------------
-    // Local Signals
+    // Local Nets
     //-------------------------------------------------------------------------
-    
+    wire [N-1:0] a_complemented;
+
     //-------------------------------------------------------------------------
-    // Combinational Logic
+    // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
         
     //-------------------------------------------------------------------------
     // Sequential Logic
     //-------------------------------------------------------------------------
-    
+    assign a_complemented = ~a;
+    assign a_selected     = subtract ? a_complemented : a;
+
     //-------------------------------------------------------------------------
     // Module Instantiation
     //-------------------------------------------------------------------------
-    generate
-        if (ALGORITHM == "RippleCarry") begin : ADDRIPPLECARRY_INTANSTIATION
-            AddRippleCarry
-            #(  //----------------------------------//---------------------------------
-                // Parameters                       // Description(s)
-                //----------------------------------//---------------------------------
-                .N         ( N                   ), //
-                .MODEL     ( MODEL               )  //
-            )                                       //
-            u_AddRippleCarry                        //
-            (   //----------------------------------//---------------------------------
-                // Inputs                           // Direction, Size & Description(s)
-                //----------------------------------//---------------------------------
-                .a         ( a                   ), // [I][N] Operand A
-                .b         ( b                   ), // [I][N] Operand B
-                .carry_in  ( carry_in            ), // [I][1] Carry In
-                //----------------------------------//---------------------------------
-                // Outputs                          // Direction, Size & Description(s)
-                //----------------------------------//---------------------------------
-                .c         ( c                   ), // [O][N] Result Sum
-                .carry_out ( carry_out           )  // [O][1] Result Carry
-            );                                      //
-        end : ADDRIPPLECARRY_INTANSTIATION
-        else begin : RTL_CODE
-            assign {carry_out, c} = a + b + carry_in;
-        end : RTL_CODE
-    endgenerate
+    Add
+    #(  //----------------------------------//---------------------------------
+        // Parameters                       // Descriptions
+        //----------------------------------//---------------------------------
+        .N          ( N                  ), // Datapath width in bits.
+        .MODEL      ( MODEL              ), // Modeling Technique
+        .ALGORITHM  ( ALGORITHM          )  // Algorithm to be used.
+    )                                       //
+    u_Add                                   //
+    (   //----------------------------------//---------------------------------
+        // Inputs                           // Direction, Size & Descriptions
+        //----------------------------------//---------------------------------
+        .a          ( a_selected         ), // [I][N] Operand A
+        .b          ( b                  ), // [I][N] Operand B
+        .ci         ( subtract           ), // [I][1] Carry In
+        //----------------------------------//---------------------------------
+        // Outputs                          // Direction, Size & Descriptions
+        //----------------------------------//---------------------------------
+        .c          ( c                  ), // [O][N] Result C
+        .co         ( co                 )  // [O][1] Result Carry
+    );                                      //
     
 endmodule : FixedPointAdd
-    
+`default_nettype wire

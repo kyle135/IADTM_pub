@@ -66,10 +66,10 @@ class AddScoreboard extends uvm_scoreboard;
             c = output_item.c;
             a_b_c_cg.sample ( );
 
-            if      ((cfg.DUT == "Add")  && ({output_item.carry_out, output_item.c} ==  (input_item.a + input_item.b + input_item.carry_in)))
-                `uvm_info ("RESULT", $psprintf("write_monitor: PASSED [a]=0x%08x [b]=0x%08x [carry_in]=0x%01x [c]=0x%08x [carry_out]=0x%01x [%s]", input_item.a, input_item.b,  input_item.carry_in, output_item.c,input_item.carry_out, cfg.DUT), UVM_LOW)   
+            if      ((cfg.DUT == "Add")  && ({output_item.co, output_item.c} ==  (input_item.a + input_item.b + input_item.ci)))
+                `uvm_info ("RESULT", $psprintf("write_monitor: PASSED [a]=0x%08x [b]=0x%08x [ci]=0x%01x [c]=0x%08x [co]=0x%01x [%s]", input_item.a, input_item.b,  input_item.ci, output_item.c,input_item.co, cfg.DUT), UVM_LOW)   
             else
-                `uvm_error("RESULT", $psprintf("write_monitor: FAILED [a]=0x%08x [b]=0x%08x [carry_in]=0x%01x [c]=0x%08x [carry_out]=0x%01x [%s]", input_item.a, input_item.b,  input_item.carry_in, output_item.c,input_item.carry_out, cfg.DUT))
+                `uvm_error("RESULT", $psprintf("write_monitor: FAILED [a]=0x%08x [b]=0x%08x [ci]=0x%01x [c]=0x%08x [co]=0x%01x [%s]", input_item.a, input_item.b,  input_item.ci, output_item.c,input_item.co, cfg.DUT))
 
         end
     endfunction : write_monitor

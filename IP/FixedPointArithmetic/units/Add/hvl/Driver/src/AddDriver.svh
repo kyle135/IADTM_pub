@@ -44,7 +44,7 @@ class AddDriver extends uvm_driver #(AddSequenceItem);
             seq_item_port.get_next_item ( item );
  
             `uvm_info ("AddDriver", item.sprint(), UVM_LOW );
-            intf.drive_inputs ( item.a, item.b, item.carry_in);
+            intf.drive_inputs ( item.a, item.b, item.ci);
  
             // Ping the event so that the monitor knows to capture the output
             cfg.capture.trigger();
