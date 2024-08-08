@@ -22,7 +22,6 @@ VERILOG_HVL_FILES       := $(ALU_VERILOG_HVL_FILES)
 MODELS                  := $(ALU_MODELS)
 TOPS                    := $(ALU_TOPS)
 WIDTH                   := 32
-ALGORITHMS              := $(ALU_ALGORITHMS)
 
 display:
 	@echo "[VLIB]           $(VLIB) $(VLIB_OPTS)"

@@ -69,7 +69,6 @@ interface  ALUInterface
         GPR_c          = i_GPR_c;
         SPR_h          = i_SPR_h;
         SPR_l          = i_SPR_l;
-        @(posedge clk);
 	end
     endtask : drive_inputs
 

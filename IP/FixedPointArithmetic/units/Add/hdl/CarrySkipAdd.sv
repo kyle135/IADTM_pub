@@ -5,7 +5,7 @@
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
-// Algorithm:   CarrySkipAdd
+// Top:         CarrySkipAdd
 // Modeling:    Behavioral, Dataflow, Structural
 // Description: 
 //-----------------------------------------------------------------------------

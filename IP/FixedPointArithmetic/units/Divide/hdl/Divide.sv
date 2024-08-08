@@ -7,8 +7,8 @@ module Divide
 #(  //----------------------------------//---------------------------------
     // Parameter(s)                     // Description(s)
     //----------------------------------//---------------------------------
-    parameter integer N         = 32,   // Data Path width in bits.
-    parameter string  ALGORITHM = "RTL" //
+    parameter integer N   = 32,         // Data Path width in bits.
+    parameter string  TOP = "RTL"       // Modeling Technique
 )  (//----------------------------------//---------------------------------
     // Inputs                           // Description(s)
     //----------------------------------//---------------------------------
@@ -22,7 +22,7 @@ module Divide
 
 
     generate
-        if (ALGORITHM == "RTL") begin
+        if (TOP == "RTL") begin
             assign c = a / b;
         end
     endgenerate

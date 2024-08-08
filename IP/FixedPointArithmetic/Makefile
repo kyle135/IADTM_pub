@@ -22,7 +22,6 @@ MODELS                  := $(FIXEDPOINTARITHMETIC_MODELS)
 TOPS                    := $(FIXEDPOINTARITHMETIC_TOPS)
 TOP                     := FixedPointSubtract
 WIDTH                   := 32
-ALGORITHMS              := $(FIXEDPOINTARITHMETIC_ALGORITHMS)
 
 display:
 	@echo "[VLIB]           $(VLIB) $(VLIB_OPTS)"

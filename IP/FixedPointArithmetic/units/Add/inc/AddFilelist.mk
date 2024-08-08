@@ -6,11 +6,12 @@
 #----------------------------------------------------------------------------------------
 # Locate our damn selves.
 #----------------------------------------------------------------------------------------
-export ADDINC_CURRENT_MAKEFILE   := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
-export ADDINC_MAKEFILE_DIRECTORY := $(dir $(ADDINC_CURRENT_MAKEFILE))
-export ADD_DIRECTORY             := $(abspath $(ADDINC_MAKEFILE_DIRECTORY)/..)
+export ADD_INC_CURRENT_MAKEFILE  := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+export ADD_INC_MAKEFILE_DIRECTORY:= $(dir $(ADD_INC_CURRENT_MAKEFILE))
+export ADD_DIRECTORY             := $(abspath $(ADD_INC_MAKEFILE_DIRECTORY)/..)
 export ADD_HDL_DIRECTORY	     := $(abspath $(ADD_DIRECTORY)/hdl)
 export ADD_HVL_DIRECTORY	     := $(abspath $(ADD_DIRECTORY)/hvl)
+# export ADD_IP_DIRECTORY          :=
 
 export ADD_MODELS                := \
     Behavioral \

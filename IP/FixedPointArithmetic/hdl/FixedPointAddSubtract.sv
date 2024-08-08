@@ -13,9 +13,9 @@ module FixedPointAddSubtract
 #(  //------------------------------------------//-----------------------------
     // Parameters                               // Descriptions
     //------------------------------------------//-----------------------------
-    parameter int    N         = 32,            // Datapath width in bits.
-    parameter string MODEL     = "Structural",  // Modeling Technique
-    parameter string ALGORITHM = "RippleCarry"  // Algorithm to be used.
+    parameter int    N     = 32,                // Datapath width in bits.
+    parameter string MODEL = "Structural",      // Modeling Technique
+    parameter string TOP   = "RippleCarryAdd"   // TOP to be used.
 )  (//------------------------------------------//-----------------------------
     // Inputs                                   // Descriptions
     //------------------------------------------//-----------------------------
@@ -32,42 +32,44 @@ module FixedPointAddSubtract
     //-------------------------------------------------------------------------
     // Local Nets
     //-------------------------------------------------------------------------
-    wire [N-1:0] a_complemented;
+    logic [N-1:0] b_complemented;
+    logic [N-1:0] b_selected;
 
     //-------------------------------------------------------------------------
     // Continuous Assignments and Combinational Logic
     //-------------------------------------------------------------------------
-        
+    assign b_complemented = ~b;
+    // Stupid Hack
+    assign b_selected     = subtract ? b_complemented : b;
+    
     //-------------------------------------------------------------------------
     // Sequential Logic
     //-------------------------------------------------------------------------
-    assign a_complemented = ~a;
-    assign a_selected     = subtract ? a_complemented : a;
 
     //-------------------------------------------------------------------------
     // Module Instantiation
     //-------------------------------------------------------------------------
     Add
-    #(  //----------------------------------//---------------------------------
-        // Parameters                       // Descriptions
-        //----------------------------------//---------------------------------
-        .N          ( N                  ), // Datapath width in bits.
-        .MODEL      ( MODEL              ), // Modeling Technique
-        .ALGORITHM  ( ALGORITHM          )  // Algorithm to be used.
-    )                                       //
-    u_Add                                   //
-    (   //----------------------------------//---------------------------------
-        // Inputs                           // Direction, Size & Descriptions
-        //----------------------------------//---------------------------------
-        .a          ( a_selected         ), // [I][N] Operand A
-        .b          ( b                  ), // [I][N] Operand B
-        .ci         ( subtract           ), // [I][1] Carry In
-        //----------------------------------//---------------------------------
-        // Outputs                          // Direction, Size & Descriptions
-        //----------------------------------//---------------------------------
-        .c          ( c                  ), // [O][N] Result C
-        .co         ( co                 )  // [O][1] Result Carry
-    );                                      //
+    #(  //-------------------------//------------------------------------------
+        // Parameters              // Descriptions
+        //-------------------------//------------------------------------------
+        .N      ( N             ), // Datapath width in bits.
+        .MODEL  ( MODEL         ), // Modeling Technique
+        .TOP    ( TOP           )  // TOP to be used.
+    )                              //
+    u_Add                          //
+    (   //-------------------------//------------------------------------------
+        // Inputs                  // Direction, Size & Descriptions
+        //-------------------------//------------------------------------------
+        .a      ( a             ), // [I][N] Operand A
+        .b      ( b_selected    ), // [I][N] Operand B
+        .ci     ( subtract      ), // [I][1] Carry In
+        //-------------------------//------------------------------------------
+        // Outputs                 // Direction, Size & Descriptions
+        //-------------------------//------------------------------------------
+        .c      ( c             ), // [O][N] Result C
+        .co     ( co            )  // [O][1] Result Carry
+    );                             //
     
-endmodule : FixedPointAdd
+endmodule : FixedPointAddSubtract
 `default_nettype wire

@@ -8,8 +8,8 @@
 #----------------------------------------------------------------------------------------
 export BITWISE_INC_CURRENT_MAKEFILE	  := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
 export BITWISE_INC_MAKEFILE_DIRECTORY := $(dir $(BITWISE_INC_CURRENT_MAKEFILE))
-export BITWISE_HDL_DIRECTORY      := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hdl)
-export BITWISE_HVL_DIRECTORY      := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hvl)
+export BITWISE_HDL_DIRECTORY          := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hdl)
+export BITWISE_HVL_DIRECTORY          := $(abspath $(BITWISE_INC_MAKEFILE_DIRECTORY)/../hvl)
 
 export BITWISE_MODELING               := \
     Behavioral \

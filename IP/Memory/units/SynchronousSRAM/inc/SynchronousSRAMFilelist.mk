@@ -11,44 +11,23 @@
 #-----------------------------------------------------------------------------
 # Locate our damn selves.
 #----------------------------------------------------------------------------------------
-export ALU_INC_CURRENT_MAKEFILE	  := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
-export ALU_INC_MAKEFILE_DIRECTORY := $(dir $(ALU_INC_CURRENT_MAKEFILE))
-export ALU_HDL_DIRECTORY      := $(abspath $(ALU_INC_MAKEFILE_DIRECTORY)/../hdl)
-export ALU_HVL_DIRECTORY      := $(abspath $(ALU_INC_MAKEFILE_DIRECTORY)/../hvl)
-export ALU_IP_DIRECTORY       := $(abspath $(ALU_INC_MAKEFILE_DIRECTORY)../../../../../)
+export SYNCHRONOUSSRAM_INC_CURRENT_MAKEFILE   := $(word $(words $(MAKEFILE_LIST)),$(MAKEFILE_LIST))
+export SYNCHRONOUSSRAM_INC_MAKEFILE_DIRECTORY := $(dir $(SYNCHRONOUSSRAM_INC_CURRENT_MAKEFILE))
+export SYNCHRONOUSSRAM_HDL_DIRECTORY          := $(abspath $(SYNCHRONOUSSRAM_INC_MAKEFILE_DIRECTORY)/../hdl)
+export SYNCHRONOUSSRAM_HVL_DIRECTORY          := $(abspath $(SYNCHRONOUSSRAM_INC_MAKEFILE_DIRECTORY)/../hvl)
 
-export ALU_MODELING               := \
-    Behavioral \
-	DataFlow \
-	Structural
-
-export ALU_TOPS                   := \
-	ALU
-
-export ALU_DPI_FILES              := \
-	hvl/CModel/ALUCModel.c
-
-include $(ALU_IP_DIRECTORY)/BasicCombinationalLogic/inc/BasicCombinationalLogicFilelist.mk
-include $(ALU_IP_DIRECTORY)/FixedPointArithmetic/inc/FixedPointArithmeticFilelist.mk
+export SYNCHRONOUSSRAM_TOPS                   := \
+	MemorySimpleDualPort \
+	MemoryTrueDualPort
 
 #----------------------------------------------------------------------------------------
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
-export ALU_VERILOG_HDL_FILES := \
-	../../hdl/MIPS32_1_hdl_pkg.sv \
-	hdl/ALU_hdl_pkg.sv \
-	$(BASICCOMBINATIONALLOGIC_VERILOG_HDL_FILES) \
-	$(FIXEDPOINTARITHMETIC_VERILOG_HDL_FILES) \
-	hdl/ALUAddSubtract.sv \
-	hdl/ALUShift.sv \
-	hdl/ALUMultiplyDivide.sv \
-	hdl/ALULogical.sv \
-	hdl/ALU.sv
+export SYNCHRONOUSSRAM_VERILOG_HDL_FILES := \
+	$(SYNCHRONOUSSRAM_HDL_DIRECTORY)/MemorySimple.sv
 
 #----------------------------------------------------------------------------------------
 # Specify Verilog RTL Files
 #----------------------------------------------------------------------------------------
-export ALU_VERILOG_HVL_FILES := \
-	hvl/ALU_hvl_pkg.sv \
-	hvl/Interface/src/ALUInterface.sv \
-	hvl/ALU_tb.sv
+export SYNCHRONOUSSRAM_VERILOG_HVL_FILES :=
+

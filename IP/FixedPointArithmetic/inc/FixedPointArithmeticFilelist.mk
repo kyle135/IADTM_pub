@@ -19,31 +19,19 @@ export FIXEDPOINTARITHMETIC_HVL_DIRECTORY			:= $(abspath $(FIXEDPOINTARITHMETIC_
 export FIXEDPOINTARITHMETIC_TOPS					:= \
 	FixedPointAddSubtract
 	
-
+include $(FIXEDPOINTARITHMETIC_DIRECTORY)/units/Add/inc/AddFilelist.mk
 #------------------------------------------------------------------------------
 # Specify Verilog RTL Files
 #------------------------------------------------------------------------------
 export FIXEDPOINTARITHMETIC_VERILOG_HDL_FILES		:= \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralHalfAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralFullAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralRippleCarryAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralReducedFullAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralCarryLookAheadGenerator.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralCarryLookAheadAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralBlockCarryLookAheadAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralCarrySkipAdder.sv \
-	$(FIXEDPOINTARITHMETIC_DIRECTORY)/units/AddSubtract/hdl/StructuralCarrySelectAdder.sv \
+	$(ADD_VERILOG_HDL_FILES) \
 	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointAddSubtract.sv \
-
-
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointAdd.sv
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointCompare.sv
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointDivide.sv
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointMultiply.sv
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointArithmeticShift.sv
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointCountLeadingOnes.sv
-#$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointCountLeadingZeros.sv
-
+	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointCompare.sv \
+	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointDivide.sv \
+	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointMultiply.sv \
+	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointArithmeticShift.sv \
+	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointCountLeadingOnes.sv \
+	$(FIXEDPOINTARITHMETIC_HDL_DIRECTORY)/FixedPointCountLeadingZeros.sv
 
 #------------------------------------------------------------------------------
 # Specify Verilog RTL Files

@@ -5,29 +5,29 @@
 // Engineer:    Kyle D. Gilsdorf (Kyle.Gilsdorf@asu.edu)
 // IP Name:     FixedPointArithmetic
 // Unit Name:   Add
-// Algorithm:   FullAdd
+// Top:         FullAdd
 // Model:       Behavioral
 // Description: 
 //-----------------------------------------------------------------------------
 `default_nettype none
 module Add
-#(  //--------------------------//---------------------------------------------
-    // Parameters               // Descriptions
-    //-----------------------------------------//---------------------------------------------
-    parameter integer  N    = 32,              // Datapath width in bits
-    parameter string   MODEL= "Behavioral",    //
-    parameter string   TOP  = "RippleCarryAdd" //
-)  (//--------------------------//---------------------------------------------
-    // Inputs                   // Descriptions
-    //--------------------------//---------------------------------------------
-    input  wire [N-1:0] a,      // Operand A
-    input  wire [N-1:0] b,      // Operand B
-    input  wire         ci,     // Carry in
-    //--------------------------//---------------------------------------------
-    // Outputs                  // Descriptions
-    //--------------------------//---------------------------------------------
-    output reg  [N-1:0] c,      // Result
-    output reg          co      // Carry out
+#(  //-------------------------------------------//----------------------------
+    // Parameters                                // Descriptions
+    //-------------------------------------------//----------------------------
+    parameter integer   N     = 32,              // Datapath width in bits
+    parameter string    MODEL = "Behavioral",    //
+    parameter string    TOP   = "RippleCarryAdd" //
+)  (//-------------------------------------------//----------------------------
+    // Inputs                                    // Descriptions
+    //-------------------------------------------//----------------------------
+    input  wire [N-1:0] a,                       // Operand A
+    input  wire [N-1:0] b,                       // Operand B
+    input  wire         ci,                      // Carry in
+    //-------------------------------------------//----------------------------
+    // Outputs                                   // Descriptions
+    //-------------------------------------------//----------------------------
+    output logic [N-1:0] c,                      // Result C
+    output logic         co                      // Carry out
 );
 
     //-------------------------------------------------------------------------
@@ -90,15 +90,15 @@ module Add
                 .co     ( co     )  // [O][1] Result Carry
             );                      //
         end : CARRYLOOKAHEADADD_INTANSTIATION
-        else if (TOP == "BlockCarryLookAhead") begin : BLOCKCARRYLOOKAHEAD_INSTANTIATION
-            BlockCarryLookAhead
+        else if (TOP == "BlockCarryLookAheadAdd") begin : BLOCKCARRYLOOKAHEADADD_INSTANTIATION
+            BlockCarryLookAheadAdd
             #(  //------------------//-----------------------------------------
                 // Parameters       // Descriptions
                 //------------------//-----------------------------------------
                 .N      ( N      ), // Data-path width in bits.
                 .MODEL  ( MODEL  )  // Which modeling technique?
             )                       //
-            u_BlockCarryLookAhead
+            u_BlockCarryLookAheadAdd
             (   //------------------//-----------------------------------------
                 // Inputs           // Direction, Size & Descriptions
                 //------------------//-----------------------------------------
@@ -111,7 +111,7 @@ module Add
                 .c      ( c      ), // [O][N] Result Sum
                 .co     ( co     )  // [O][1] Result Carry
             );                      //
-        end : BLOCKCARRYLOOKAHEAD_INSTANTIATION
+        end : BLOCKCARRYLOOKAHEADADD_INSTANTIATION
         else if (TOP == "CarrySkipAdd") begin : CARRYSKIPADD_INSTANTIATION
             CarrySkipAdd
             #(  //------------------//-----------------------------------------

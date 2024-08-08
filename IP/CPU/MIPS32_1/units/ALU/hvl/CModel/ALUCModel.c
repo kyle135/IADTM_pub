@@ -238,7 +238,7 @@ void compute_results(
                     a = (uint64_t) GPR_a & 0x00000000FFFFFFFF;
                     b = (uint64_t) GPR_b & 0x00000000FFFFFFFF;
                     c = (uint64_t) (a - b);
-                    if ((c >> 32) != 0) {
+                    if ((uint64_t) (c & 0xFFFFFFFF00000000) != (uint64_t) 0x0000000000000000) {
                         GPR_c_val = 0;
                         GPR_c_dat = GPR_c;
                         SPR_o_val = 1;

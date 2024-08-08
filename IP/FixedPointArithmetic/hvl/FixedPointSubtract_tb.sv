@@ -29,20 +29,20 @@ module FixedPointSubtract_tb
     logic [N-1:0] c;
     logic [N-1:0] carry_out;
     
-    FixedPointSubtract
+    FixedPointAddSubtract
     #(  //-----------------------------//------------------------------------
         // Parameter(s)                // Description(s)
         //-----------------------------//------------------------------------
         .N          ( 32            ), // Data path width in bits.
-        .ALGORITHM  ("RippleCarrySubtraction")  //
+        .TOP        ("RippleCarryAdd")  //
     )                                  //
-    u_DUT                              //
+    u_FixedPointAddSubtract            //
     (   //-----------------------------//------------------------------------
         // Inputs                      // Description(s)
         //-----------------------------//------------------------------------
         .a          ( a             ), // [I][N]
         .b          ( b             ), // [I][N]
-        .carry_in   ( carry_in      ), // [I][1]
+        .subtract   ( 1'b1          ), // [I][1]
         //-----------------------------//------------------------------------
         // Inputs                      // Description(s)
         //-----------------------------//------------------------------------
